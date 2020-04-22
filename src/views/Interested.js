@@ -68,12 +68,6 @@ class Interested extends React.Component {
 
   handleSelect(ranges){
     console.log(ranges);
-    // {
-    //   selection: {
-    //     startDate: [native Date Object],
-    //     endDate: [native Date Object],
-    //   }
-    // }
   }
   showCalendarState = () => {
     this.setState({ showCalendar: !this.state.showCalendar });
