@@ -8,14 +8,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import FilterIcon from '@material-ui/icons/Filter';
 import {
-  useTable,
-  useGroupBy,
-  useFilters,
-  useSortBy,
-  useExpanded,
-  usePagination
-} from 'react-table'
-import {
   Card,
   CardHeader,
   CardBody,
