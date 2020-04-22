@@ -2,7 +2,19 @@ import React from "react";
 import firebaseinit from '../credentials';
 import IconButton from '@material-ui/core/IconButton';
 import Skeleton from '@material-ui/lab/Skeleton';
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+import SmsIcon from '@material-ui/icons/Sms';
+import MailIcon from '@material-ui/icons/Mail';
+import DeleteIcon from '@material-ui/icons/Delete';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import FilterIcon from '@material-ui/icons/Filter';
+import {
+  useTable,
+  useGroupBy,
+  useFilters,
+  useSortBy,
+  useExpanded,
+  usePagination
+} from 'react-table'
 import {
   Card,
   CardHeader,
@@ -12,17 +24,21 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { Calendar, DateRangePicker } from 'react-date-range';
 import Button from '@material-ui/core/Button';
+import 'react-date-range/dist/styles.css'; 
+import 'react-date-range/dist/theme/default.css'; 
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 const database = firebaseinit.database();
 
 const merchantorders = [];
 
-class Tables extends React.Component {
+class Interested extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {merchantorderslist : [], added: false};
+    this.state = {merchantorderslist : [], added: false, showCalendar: false};
   }
 
   componentDidMount() { 
@@ -30,6 +46,7 @@ class Tables extends React.Component {
   
   
     database.ref('admin').child('travelers')
+        .orderByChild('timestamp')
         .once('value')
         .then((snapshot) => {
           
@@ -49,20 +66,51 @@ class Tables extends React.Component {
     }
   }
 
+  handleSelect(ranges){
+    console.log(ranges);
+    // {
+    //   selection: {
+    //     startDate: [native Date Object],
+    //     endDate: [native Date Object],
+    //   }
+    // }
+  }
+  showCalendarState = () => {
+    this.setState({ showCalendar: !this.state.showCalendar });
+  }
+
   render() {
     const merchantorderslist = this.state.merchantorderslist;
+    const selectionRange = {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    };
     return (
       <>
         <div className="content">
           <Row>
             <Col md="12">
               <Card>
-                <CardHeader>
-                  <CardTitle tag="h4">List Of Confirmed Travelers</CardTitle>
-                  <p className="category">All travelers across various routes</p>
+                <CardHeader className="row" style={{ padding: '25px 25px 5px' }}>
+                  <Col md="9">
+                    <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800' }}>List Of Interested Travelers</CardTitle>
+                    <p className="category" style={{ fontSize: '1em' }}>All travelers who have shown interest</p>
+                  </Col>
+                  <Col md="3">
+                    <IconButton style={{ float: 'right' }} onClick={this.showCalendarState}>
+                      <FilterIcon style={{ color: 'white' }}/>
+                    </IconButton>
+                  </Col>
                 </CardHeader>
                 <CardBody>
-                  {this.state.added && <Table className="tablesorter" responsive>
+                  {this.state.showCalendar && <DateRangePicker
+                      className={'forfloat'}
+                      style={{ float: 'right' }}
+                      ranges={[selectionRange]}
+                      onChange={this.handleSelect}
+                    />}
+                  {this.state.added && <Table striped size="sm" className="tablesorter" responsive>
                     <thead className="text-primary">
                       <tr style={{ textAlign: 'center' }}>
                         <th>PNR</th>
@@ -70,8 +118,6 @@ class Tables extends React.Component {
                         <th>From</th>
                         <th>To</th>
                         <th>Number</th>
-                        <th>Weight</th>
-                        <th>Discount</th>
                         <th>Class</th>
                         <th>Actions</th>
                       </tr>
@@ -85,12 +131,20 @@ class Tables extends React.Component {
                             <td>{merchantorder.from}</td>
                             <td>{merchantorder.to}</td>
                             <td>{merchantorder.number}</td>
-                            <td>{merchantorder.weight}</td>
-                            <td>{merchantorder.discount}</td>
-                            <td><a href="#">{merchantorder.classoption}</a></td>
+                            <td>{merchantorder.classoption}</td>
                             <td><IconButton>
-   <AccessAlarmIcon style={{ color: 'green' }}/>
-</IconButton></td>
+   <SmsIcon style={{ color: 'green' }}/>
+</IconButton>
+<IconButton>
+   <MailIcon style={{ color: 'green' }}/>
+</IconButton>
+<IconButton>
+   <WhatsAppIcon style={{ color: 'green' }}/>
+</IconButton>
+<IconButton>
+   <DeleteIcon style={{ color: '#ffcccb' }}/>
+</IconButton>
+</td>
                           </tr>
                         ))
                         : 
@@ -101,6 +155,7 @@ class Tables extends React.Component {
                           <td>-</td>
                         </tr>)
                       }
+                      
                     </tbody>
                   </Table>}
                 </CardBody>
@@ -124,4 +179,4 @@ class Tables extends React.Component {
   }
 }
 
-export default Tables;
+export default Interested;

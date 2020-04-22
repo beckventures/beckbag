@@ -3,6 +3,7 @@ import Icons from "views/Icons.js";
 import Map from "views/Map.js";
 import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
+import Interested from "views/Interested.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
 
@@ -17,11 +18,19 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/travelers",
+    path: "/confirmedtravelers",
     name: "Pending Trips",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-puzzle-10",
     component: TableList,
+    layout: "/admin"
+  },
+  {
+    path: "/interestedtravelers",
+    name: "Interested Travelers",
+    rtlName: "قائمة الجدول",
+    icon: "tim-icons icon-puzzle-10",
+    component: Interested,
     layout: "/admin"
   },
   {

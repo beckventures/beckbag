@@ -12529,4 +12529,7 @@ textarea.form-control {
 select.form-control option {
   color: #888; }
 
+.forfloat {
+  float: right;
+}
 /*# sourceMappingURL=black-dashboard-react.css.map */
