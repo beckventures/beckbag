@@ -28,7 +28,6 @@ import { Calendar, DateRangePicker } from 'react-date-range';
 import Button from '@material-ui/core/Button';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 const database = firebaseinit.database();
 
