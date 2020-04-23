@@ -29,15 +29,6 @@ import {
   Col
 } from "reactstrap";
 import Button from '@material-ui/core/Button';
-import {
-  useTable,
-  usePagination,
-  useResizeColumns,
-  useFlexLayout,
-  useSortBy,
-  useRowSelect,
-} from 'react-table'
-import styled from 'styled-components';
 const database = firebaseinit.database();
 
 const merchantorders = [];
