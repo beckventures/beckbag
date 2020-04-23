@@ -62,15 +62,25 @@ class Tables extends React.Component {
 
   componentDidMount() { 
   const that = this;
-  
+    
   
     database.ref('admin').child('travelers')
+        .orderByChild('timestamp')
+        .limitToLast(20)
         .once('value')
         .then((snapshot) => {
           
           snapshot.forEach((childSnapshot) => {
             that.setState({ added : true });
-            merchantorders.push(childSnapshot.val());
+            
+            var trip = childSnapshot.val();
+            var timestamp = childSnapshot.val().timestamp;
+            var todate=new Date(timestamp).getDate();
+            var tomonth=new Date(timestamp).getMonth()+1;
+            var toyear=new Date(timestamp).getFullYear();
+            var original_date=todate+'/'+tomonth+'/'+toyear;
+            trip.original_date = original_date;
+            merchantorders.push(trip);
             this.setState({
             merchantorderslist: merchantorders
             });
@@ -85,24 +95,7 @@ class Tables extends React.Component {
   }
 
   render() {
-    const merchantorderslist = this.state.merchantorderslist;
-
-  const columns = [
-    {
-      Header: 'PNR',
-      accessor: 'uid'
-    }, {
-      Header: 'Number',
-      accessor: 'number'
-    }, {
-      Header: 'From',
-      accessor: 'from'
-    }, {
-      Header: 'To',
-      accessor: 'to'
-    }
-  ];
-
+    const merchantorderslist = this.state.merchantorderslist.reverse();
     return (
       <>
         <div className="content">
@@ -110,15 +103,24 @@ class Tables extends React.Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">List Of Confirmed Travelers</CardTitle>
-                  <p className="category">All travelers across various routes</p>
+                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800' }}>List Of Confirmed Travelers</CardTitle>
+                  <p className="category" style={{ fontSize: '1em' }}>All travelers across various routes</p>
                 </CardHeader>
                 <CardBody>
                   
                   {this.state.added && <MaterialTable
                     options={{
       filtering: true,
-      actionsColumnIndex: -1
+      actionsColumnIndex: -1,
+      exportButton: true,
+      headerStyle: {
+            fontWeight: '800',
+            textAlign: 'center'
+          },
+      cellStyle: {
+            fontWeight: '500',
+            textAlign: 'center'
+          }    
     }}
                   icons={tableIcons}
           columns={[
@@ -127,10 +129,23 @@ class Tables extends React.Component {
             { title: "To", field: "to" },
             { title: "Number", field: "number" },
             { title: "Weight", field: "weight" },
+            { title: "Date", field: "original_date", sorting: false },
             { title: "Discount", field: "discount" },
             { title: "Class", field: "classoption" }
           ]}
           data={merchantorderslist}
+          actions={[
+        {
+          icon: () => <SaveAlt />,
+          tooltip: 'Save User',
+          onClick: (event, rowData) => alert("You saved " + rowData.name)
+        },
+        {
+          icon: () => <DeleteOutline />,
+          tooltip: 'Delete User',
+          onClick: (event, rowData) => alert("You want to delete " + rowData.name)
+        }
+      ]}
           title="Confirmed Travelers"
         />}
                 </CardBody>
