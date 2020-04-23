@@ -140,7 +140,7 @@ class Tables extends React.Component {
             { title: "Class", field: "classoption" }
           ]}
           data={merchantorderslist}
-          title="Demo Title"
+          title="Confirmed Travelers"
         />}
                 </CardBody>
               </Card>
