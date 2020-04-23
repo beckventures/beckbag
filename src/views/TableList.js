@@ -127,6 +127,7 @@ class Tables extends React.Component {
                   {this.state.added && <MaterialTable
                     options={{
       filtering: true,
+      actionsColumnIndex: -1
     }}
                   icons={tableIcons}
           columns={[
