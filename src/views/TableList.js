@@ -124,7 +124,10 @@ class Tables extends React.Component {
                 </CardHeader>
                 <CardBody>
                   
-                  <MaterialTable
+                  {this.state.added && <MaterialTable
+                    options={{
+      filtering: true,
+    }}
                   icons={tableIcons}
           columns={[
             { title: "PNR", field: "uid" },
@@ -137,7 +140,7 @@ class Tables extends React.Component {
           ]}
           data={merchantorderslist}
           title="Demo Title"
-        />
+        />}
                 </CardBody>
               </Card>
             </Col>
