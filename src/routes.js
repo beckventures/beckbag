@@ -3,6 +3,7 @@ import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
 import Interested from "views/Interested.js";
 import UserProfile from "views/UserProfile.js";
+import Matching from "views/Matching.js";
 
 var routes = [
   {
@@ -20,6 +21,14 @@ var routes = [
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-puzzle-10",
     component: TableList,
+    layout: "/admin"
+  },
+  {
+    path: "/match",
+    name: "Matchmaking",
+    rtlName: "قائمة الجدول",
+    icon: "tim-icons icon-puzzle-10",
+    component: Matching,
     layout: "/admin"
   },
   {

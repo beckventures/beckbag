@@ -17,13 +17,18 @@ import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import EmailIcon from '@material-ui/icons/Email';
 import Search from '@material-ui/icons/Search';
+import SmsIcon from '@material-ui/icons/Sms';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import {
   Card,
   CardHeader,
   CardBody,
   CardTitle,
+  CardImg, CardText,
+  CardSubtitle,
   Table,
   Row,
   Col
@@ -52,44 +57,46 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
+var matches = [];
+var actuallist = [];
 
-class Tables extends React.Component {
+class Matching extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {merchantorderslist : [], added: false};
+    this.state = {merchantorderslist : [], added: false, totalweight: 0};
   }
 
   componentDidMount() { 
   const that = this;
-    
+  var weightcalc = 0;
+  var timestamp = 0;  
   
-    database.ref('beckbag').child('carrier').child('airindia').child('trips').child('added')
-        .orderByChild('timestamp')
-        .limitToLast(20)
+    database.ref('beckbag').child('flights')
         .once('value')
         .then((snapshot) => {
           
           snapshot.forEach((chSnapshot) => {
-            database.ref('beckbag').child('carriertrips').child('added').child(chSnapshot.key).once('value').then(function(childSnapshot) {
-              that.setState({ added : true });
-            
-            var trip = childSnapshot.val();
-            var bookingtimestamp = childSnapshot.val().bookingtimestamp;
-            var todate=new Date(bookingtimestamp).getDate();
-            var tomonth=new Date(bookingtimestamp).getMonth()+1;
-            var toyear=new Date(bookingtimestamp).getFullYear();
-            var booking_date=todate+'/'+tomonth+'/'+toyear;
-            trip.booking_date = booking_date;
-            merchantorders.push(trip);
-            that.setState({
-            merchantorderslist: merchantorders
+              var flightnumber = '';
+              chSnapshot.forEach((childSnapshot) => {
+                var weight = childSnapshot.val().weight;
+                timestamp = childSnapshot.val().timestamp;
+                weightcalc = weight + weightcalc;
+                flightnumber = chSnapshot.key;
+              });
+              actuallist.push({
+                weight: weightcalc,
+                timestamp: timestamp,
+                flightnumber: flightnumber
+              });
+              weightcalc = 0;
             });
-            });
-            
+            console.log(actuallist);
           });
-    });
+    
   }
+
+  
 
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.added && this.state.added) {
@@ -104,80 +111,16 @@ class Tables extends React.Component {
         <div className="content">
           <Row>
             <Col md="12">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800' }}>List Of Confirmed Travelers</CardTitle>
-                  <p className="category" style={{ fontSize: '1em' }}>All travelers across various routes</p>
-                </CardHeader>
-                <CardBody>
-                  
-                  {this.state.added && <MaterialTable
-                    options={{
-      filtering: true,
-      actionsColumnIndex: -1,
-      exportButton: true,
-      headerStyle: {
-            fontWeight: '800',
-            textAlign: 'center'
-          },
-      cellStyle: {
-            fontWeight: '500',
-            textAlign: 'center'
-          }    
-    }}
-                  icons={tableIcons}
-          columns={[
-            { title: "PNR", field: "pnr" },
-            { title: "Airline", field: "flightnumber" },
-            { title: "From", field: "from" },
-            { title: "To", field: "to" },
-            { title: "Weight", field: "weight" },
-            { title: "Travel Date", field: "traveldate", sorting: false }
-          ]}
-          data={merchantorderslist}
-          detailPanel={[
-        {
-          tooltip: 'Show Name',
-          render: rowData => {
-            return (
-              <div
-                style={{
-                  fontSize: '1.2em',
-                  fontWeight: '800',
-                  textAlign: 'center',
-                  color: 'white',
-                  padding: '1em',
-                  backgroundColor: '#1e1e2f',
-                }}
-              >
-              <Row>
-                <Col md="3">
-                Booking Date<br/>
-                <br/>{rowData.booking_date}<br/>
-                </Col>
-                <Col md="3">
-                Discount<br/>
-                <br/>{rowData.discount}<br/>
-                </Col>
-                <Col md="3">
-                Number of Passengers<br/>
-                <br/>{rowData.number}<br/>
-                </Col>
-                <Col md="3">
-                Class<br/>
-                <br/>{rowData.class}<br/>
-                </Col>
-               </Row> 
-              </div>
-            )
-          },
-        },
-      ]}
-          
-          title="Confirmed Travelers"
-        />}
-                </CardBody>
-              </Card>
+            <Card>
+        <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Card title</CardTitle>
+          <CardSubtitle>Card subtitle</CardSubtitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <Button>Button</Button>
+        </CardBody>
+      </Card>
+              
             </Col>
           </Row>
           {!this.state.added && <Row style={{ paddingLeft: '15px', paddingRight: '15px' }}>
@@ -197,4 +140,4 @@ class Tables extends React.Component {
   }
 }
 
-export default Tables;
+export default Matching;
