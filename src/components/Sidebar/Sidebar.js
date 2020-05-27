@@ -60,6 +60,7 @@ class Sidebar extends React.Component {
             className="simple-text logo-normal"
             target="_blank"
             onClick={this.props.toggleSidebar}
+            style={{ fontWeight: '800', fontSize: '1em' }}
           >
             BECKFriends.com
           </a>
@@ -113,8 +114,13 @@ class Sidebar extends React.Component {
                     activeClassName="active"
                     onClick={this.props.toggleSidebar}
                   >
-                    <i className={prop.icon} />
-                    <p style={{ fontWeight: '800' }}>{rtlActive ? prop.rtlName : prop.name}</p>
+                    {prop.name === 'Dashboard' ? <i class="material-icons">dashboard</i> : null}
+                    {prop.name === 'Pending Trips' ? <i class="material-icons">hourglass_empty</i> : null}
+                    {prop.name === 'Matchmaking' ? <i class="material-icons">merge_type</i> : null}
+                    {prop.name === 'Interested Travelers' ? <i class="material-icons">emoji_objects</i> : null}
+                    {prop.name === 'Notifications' ? <i class="material-icons">notification_important</i> : null}
+                    {prop.name === 'Upcoming Flights' ? <i class="material-icons">alarm</i> : null}
+                    <p style={{ fontWeight: '800', fontSize: '1.1em' }}>{rtlActive ? prop.rtlName : prop.name}</p>
                   </NavLink>
                 </li>
               );

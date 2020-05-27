@@ -18,11 +18,9 @@ import { makeStyles } from '@material-ui/core/styles';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://www.beckfriends.com/">
         BECKFriends.com
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      </Link>
     </Typography>
   );
 }

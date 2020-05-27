@@ -142,12 +142,12 @@ class AdminNavbar extends React.Component {
                   <DropdownMenu className="dropdown-navbar" right tag="ul">
                     <NavLink tag="li">
                       <DropdownItem className="nav-item">
-                        Mike John responded to your email
+                        <a href="/admin/notifications" style={{ color: 'black' }}>Mike John responded to your email</a>
                       </DropdownItem>
                     </NavLink>
-                    <NavLink tag="li">
+                    <NavLink tag="li" href="#">
                       <DropdownItem className="nav-item">
-                        You have 5 more tasks
+                        You have 7 more tasks
                       </DropdownItem>
                     </NavLink>
                     <NavLink tag="li">

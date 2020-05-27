@@ -21,6 +21,7 @@
     "prop-types": "15.7.2",
     "react": "16.13.0",
     "react-chartjs-2": "2.9.0",
+    "react-collapsible": "^2.8.0",
     "react-date-range": "^1.0.3",
     "react-dom": "16.13.0",
     "react-notification-alert": "0.0.12",

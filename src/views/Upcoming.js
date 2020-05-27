@@ -1,7 +1,7 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
 import IconButton from '@material-ui/core/IconButton';
-import ListGroupCollapse from './ListGroupCollapse';
+import ListGroupCollapseUpcoming from './ListGroupCollapseUpcoming';
 import Skeleton from '@material-ui/lab/Skeleton';
 import MaterialTable from "material-table";
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
@@ -85,7 +85,7 @@ const things = {
   }
 }
 
-class Matching extends React.Component {
+class Upcoming extends React.Component {
 
   constructor(props) {
     super(props);
@@ -96,7 +96,7 @@ class Matching extends React.Component {
   const that = this;
     
   
-   database.ref('beckbag').child('flights')
+   database.ref('beckbag').child('upcomingflights')
         .once('value')
         .then((snapshot) => {
           var timestamp = 0;
@@ -107,11 +107,14 @@ class Matching extends React.Component {
           var to = '';  
           packageslist = [];
           snapshot.forEach((chSnapshot) => {
-              var flightnumber = '';
-              chSnapshot.child('trips').forEach((childSnapshot) => {
+              console.log(chSnapshot.key);
+              database.ref('beckbag').child('upcomingflights').child(chSnapshot.key).child('shifted')
+              .once('value')
+              .then((newsnapshot) => {
+                newsnapshot.child('trips').forEach((childSnapshot) => {
                 var weight = childSnapshot.val().weight;
                 var tripno = childSnapshot.key;
-                //console.log(tripno);
+                console.log(tripno);
                 timestamp = childSnapshot.val().timestamp;
                 var todate=new Date(timestamp).getDate();
                 var tomonth=new Date(timestamp).getMonth()+1;
@@ -121,9 +124,9 @@ class Matching extends React.Component {
                 flightnumber = chSnapshot.key;
                 from=childSnapshot.val().from;
                 to=childSnapshot.val().to;
+                console.log(from+' '+to+' '+weightcalc);
               });
-
-              actuallist.push({
+                actuallist.push({
                 weight: weightcalc,
                 travel_date: travel_date,
                 flightnumber: flightnumber,
@@ -131,73 +134,16 @@ class Matching extends React.Component {
                 to: to,
               });
               weightcalc = 0;
+              console.log(actuallist);
+              });
               
-              chSnapshot.child('packages').forEach((packagesnapshot) => {
               
-              var packageid = packagesnapshot.val().package;
-              var statuscode = packagesnapshot.val().statuscode;
-              if(statuscode === 'pending')
-              {
-                
-                database.ref('beckbag').child('merchantorders').child('added').child(packageid)
-              .once('value')
-              .then((snapshotpackage) => { 
-              var content = snapshotpackage.val().content;
-              var value = '$ '+snapshotpackage.val().value;
-              var weight = snapshotpackage.val().weight+' kgs';
-              var orderid = snapshotpackage.val().orderid;
-              var fee = '₹ '+snapshotpackage.val().basecharge;
-              var recommended = snapshotpackage.val().recommended;
-              packageslist.push(
-              {
-              content: content,
-              value: value,
-              weight: weight,
-              orderid: orderid,
-              fee: fee,
-              status: 'Pending Approval',
-              recommended: recommended,
-              approvalbtn: 'yes',
-              rejectbtn: 'yes'
-              });
-              });
-              } 
-
-              if(statuscode === 'approved')
-              {
-                database.ref('beckbag').child('merchantorders').child('matched').child(packageid)
-              .once('value')
-              .then((snapshotpackage) => { 
-              var content = snapshotpackage.val().content;
-              var value = '$ '+snapshotpackage.val().value;
-              var weight = snapshotpackage.val().weight+' kgs';
-              var orderid = snapshotpackage.val().orderid;
-              var fee = '₹ '+snapshotpackage.val().basecharge;
-              var matched = snapshotpackage.val().matched;
-              packageslist.push(
-              {
-              content: content,
-              value: value,
-              weight: weight,
-              orderid: orderid,
-              fee: fee,
-              status: 'Approved',
-              matched: matched,
-              approvalbtn: 'no',
-              rejectbtn: 'yes'
-              });
-              });
-              }  
-               
-
-          
-              var index = actuallist.map(function (x) { return x.flightnumber; }).indexOf(flightnumber);
-              actuallist[index].packageslist = packageslist;
-              });
             });
           that.setState({
               airlinelist: actuallist
             })
+          console.log(actuallist);
+          console.log(this.state.airlinelist);
           }); 
 
   }
@@ -217,10 +163,10 @@ class Matching extends React.Component {
         <div className="content">
           <Row>
             <Col>
-              <p style={{ fontWeight: '800', fontSize: '1.2em', padding: '24px 15px 0'}}>PENDING MATCHES</p>
+              <p style={{ fontWeight: '800', fontSize: '1.2em', padding: '24px 15px 0'}}>UPCOMING FLIGHTS</p>
               <Container className="py-4">
               {this.state.airlinelist.map((airline) =>
-              <ListGroupCollapse key={airline} cat={airline} ball={airline} />
+              <ListGroupCollapseUpcoming key={airline} cat={airline} ball={airline} />
               )}
               </Container>
             </Col>
@@ -231,4 +177,4 @@ class Matching extends React.Component {
   }
 }
 
-export default Matching;
+export default Upcoming;

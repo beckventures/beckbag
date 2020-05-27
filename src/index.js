@@ -19,11 +19,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-
+import Notifications from "views/Notifications.js";
 import AdminLayout from "layouts/Admin/Admin.js";
 import RTLLayout from "layouts/RTL/RTL.js";
 import Signin from "views/SignIn.js";
-
 import "assets/scss/black-dashboard-react.scss";
 import "assets/demo/demo.css";
 import "assets/css/nucleo-icons.css";
@@ -36,6 +35,7 @@ ReactDOM.render(
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
       <Route path="/rtl" render={props => <RTLLayout {...props} />} />
       <Route path="/login" component={Signin}/>
+      <Route path="/notifications" component={Notifications}/>
       <Redirect from="/" to="/login" />
     </Switch>
   </Router>,
