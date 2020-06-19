@@ -5,6 +5,9 @@ import Interested from "views/Interested.js";
 import UserProfile from "views/UserProfile.js";
 import Matching from "views/Matching.js";
 import Upcoming from "views/Upcoming.js";
+import Trips from "views/Trips.js";
+import Ongoing from "views/Ongoing.js";
+import Completed from "views/Completed.js";
 
 var routes = [
   {
@@ -17,11 +20,38 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/upcoming",
-    name: "Upcoming Flights",
-    rtlName: "إخطارات",
-    icon: "tim-icons icon-bell-55",
-    component: Upcoming,
+    path: "/match",
+    name: "Matchmaking",
+    rtlName: "قائمة الجدول",
+    icon: "tim-icons icon-puzzle-10",
+    component: Matching,
+    layout: "/admin"
+  },
+  {
+    path: "/trips",
+    name: "All Trips",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: Trips,
+    layout: "/admin"
+  },
+  {
+    path: "/ongoing",
+    name: "Ongoing",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: Ongoing,
+    layout: "/admin"
+  },
+  {
+    path: "/completed",
+    name: "Completed",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: Completed,
     layout: "/admin"
   },
   {
@@ -38,22 +68,6 @@ var routes = [
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-puzzle-10",
     component: Interested,
-    layout: "/admin"
-  },
-  {
-    path: "/confirmedtravelers",
-    name: "Pending Trips",
-    rtlName: "قائمة الجدول",
-    icon: "tim-icons icon-puzzle-10",
-    component: TableList,
-    layout: "/admin"
-  },
-  {
-    path: "/match",
-    name: "Matchmaking",
-    rtlName: "قائمة الجدول",
-    icon: "tim-icons icon-puzzle-10",
-    component: Matching,
     layout: "/admin"
   },
   {

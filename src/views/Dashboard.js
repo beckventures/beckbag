@@ -17,10 +17,14 @@
 */
 import React from "react";
 // nodejs library that concatenates classes
+import firebaseinit from '../credentials';
+import { Spin, DatePicker } from 'antd';
 import classNames from "classnames";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
-
+import {
+  AreaChartOutlined,
+} from '@ant-design/icons';
 // reactstrap components
 import {
   Button,
@@ -44,17 +48,94 @@ import {
 
 // core components
 import {
-  chartExample1,
   chartExample2,
   chartExample3,
   chartExample4
 } from "variables/charts.js";
 
+const database = firebaseinit.database();
+
+const { RangePicker } = DatePicker;
+
+const antIcon = <AreaChartOutlined style={{ fontSize: 24 }} spin />
+
+var JanTotal = 100;
+var FebTotal = 200;
+var MarchTotal = 800;
+var AprilTotal = 500;
+var MayTotal = 600;
+var JuneTotal = 900;
+var JulyTotal = 500;
+var AugustTotal = 400;
+var SepTotal = 900;
+var OctTotal = 150;
+var NovTotal = 300;
+var DecTotal = 500;
+
+var weight = 0;
+var num = 0;
+var fee = 0;
+
+var chart1_2_options = {
+  maintainAspectRatio: false,
+  legend: {
+    display: false
+  },
+  tooltips: {
+    backgroundColor: "#f5f5f5",
+    titleFontColor: "#333",
+    bodyFontColor: "#666",
+    bodySpacing: 4,
+    xPadding: 12,
+    mode: "nearest",
+    intersect: 0,
+    position: "nearest"
+  },
+  responsive: true,
+  scales: {
+    yAxes: [
+      {
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: "rgba(29,140,248,0.0)",
+          zeroLineColor: "transparent"
+        },
+        ticks: {
+          suggestedMin: 60,
+          suggestedMax: 125,
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }
+    ],
+    xAxes: [
+      {
+        barPercentage: 1.6,
+        gridLines: {
+          drawBorder: false,
+          color: "rgba(29,140,248,0.1)",
+          zeroLineColor: "transparent"
+        },
+        ticks: {
+          padding: 20,
+          fontColor: "#9a9a9a"
+        }
+      }
+    ]
+  }
+}
+
+var chartExample1 = {};
+
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.loadCompletedData = this.loadCompletedData.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
     this.state = {
-      bigChartData: "data1"
+      bigChartData: "data1", added: false
     };
   }
   setBgChartData = name => {
@@ -62,20 +143,350 @@ class Dashboard extends React.Component {
       bigChartData: name
     });
   };
+
+  handleScroll = event => {
+    //console.log(event);
+  };
+
+  loadCompletedData () {
+    const that = this;
+    database.ref('beckbag').child('completedflights')
+        .once('value')
+        .then((snapshot) => {
+
+          snapshot.forEach((newsnapshot) => {
+        
+          var numpackages = newsnapshot.child('data').child('stats').child('package').val();   
+          var fee =  newsnapshot.child('data').child('stats').child('fee').val(); 
+          var weight = newsnapshot.child('data').child('stats').child('weight').val();  
+          var timestamp = newsnapshot.child('data').child('stats').child('timestamp').val();  
+
+          var month=new Date(timestamp).getMonth()+1;
+          if( month == 1)
+          {
+            JanTotal = JanTotal + weight;
+          }
+          if( month == 2)
+          {
+            FebTotal = FebTotal + weight;
+          }
+          if( month == 3)
+          {
+            MarchTotal = MarchTotal + weight;
+          }
+          if( month == 4)
+          {
+            AprilTotal = AprilTotal + weight;
+          }
+          if( month == 5)
+          {
+            MayTotal = MayTotal + weight;
+          }
+          if( month == 6)
+          {
+            JuneTotal = JuneTotal + weight;
+          }
+          if( month == 7)
+          {
+            JulyTotal = JulyTotal + weight;
+          }
+          if( month == 8)
+          {
+            AugustTotal = AugustTotal + weight;
+          }
+          if( month == 9)
+          {
+            SepTotal = SepTotal + weight;
+          }
+          if( month == 10)
+          {
+            OctTotal = OctTotal + weight;
+          }
+          if( month == 11)
+          {
+            NovTotal = NovTotal + weight;
+          }
+          if( month == 12)
+          {
+            DecTotal = DecTotal + weight;
+          }
+
+          that.setState({
+            added: true,
+            JanTotal: JanTotal,
+            FebTotal: FebTotal,
+            MarchTotal: MarchTotal,
+            AprilTotal: AprilTotal,
+            MayTotal: MayTotal,
+            JuneTotal: JuneTotal,
+            JulyTotal: JulyTotal,
+            AugustTotal: AugustTotal,
+            SepTotal: SepTotal,
+            OctTotal: OctTotal,
+            NovTotal: NovTotal,
+            DecTotal: DecTotal
+          });
+
+
+          });
+        });
+        ;
+
+ chartExample1 = {
+  data1: canvas => {
+    let ctx = canvas.getContext("2d");
+
+    let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
+    gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
+    gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
+
+    return {
+      labels: [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+      ],
+      datasets: [
+        {
+          label: "Weight",
+          fill: true,
+          backgroundColor: gradientStroke,
+          borderColor: "#1f8ef1",
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: "#1f8ef1",
+          pointBorderColor: "rgba(255,255,255,0)",
+          pointHoverBackgroundColor: "#1f8ef1",
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: [JanTotal, FebTotal, MarchTotal, AprilTotal, MayTotal, JuneTotal, JulyTotal, AugustTotal, SepTotal, OctTotal, NovTotal, DecTotal]
+        }
+      ]
+    };
+  },
+  data2: canvas => {
+    let ctx = canvas.getContext("2d");
+
+    let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
+    gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
+    gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
+
+    return {
+      labels: [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+      ],
+      datasets: [
+        {
+          label: "My First dataset",
+          fill: true,
+          backgroundColor: gradientStroke,
+          borderColor: "#1f8ef1",
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: "#1f8ef1",
+          pointBorderColor: "rgba(255,255,255,0)",
+          pointHoverBackgroundColor: "#1f8ef1",
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120]
+        }
+      ]
+    };
+  },
+  data3: canvas => {
+    let ctx = canvas.getContext("2d");
+
+    let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
+    gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
+    gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
+
+    return {
+      labels: [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+      ],
+      datasets: [
+        {
+          label: "My First dataset",
+          fill: true,
+          backgroundColor: gradientStroke,
+          borderColor: "#1f8ef1",
+          borderWidth: 2,
+          borderDash: [],
+          borderDashOffset: 0.0,
+          pointBackgroundColor: "#1f8ef1",
+          pointBorderColor: "rgba(255,255,255,0)",
+          pointHoverBackgroundColor: "#1f8ef1",
+          pointBorderWidth: 20,
+          pointHoverRadius: 4,
+          pointHoverBorderWidth: 15,
+          pointRadius: 4,
+          data: [60, 80, 65, 130, 80, 105, 90, 130, 70, 115, 60, 130]
+        }
+      ]
+    };
+  },
+  options: chart1_2_options
+};
+  }
+
+
+
+
+  componentDidMount() {
+    //window.addEventListener('scroll', this.handleScroll);
+
+    ///load data
+    ////1.loading data from completed flights - weight, fee and num of packages
+
+    this.loadCompletedData();
+
+    ////checking for upcoming flights, if any are found they are shifted
+
+    database.ref('beckbag').child('upcomingflights')
+        .once('value')
+        .then((snapshot) => {
+          snapshot.forEach((chSnapshot) => {
+              var flightnumber = chSnapshot.key;
+              var days = 0;
+              var snapshot = chSnapshot.child('shifted').val();
+              chSnapshot.child('shifted').child('trips').forEach((childSnapshot) => {
+                //this is the flight timestamp
+                var timestamp = childSnapshot.val().timestamp;
+                var current = new Date().getTime();
+                var diff = timestamp - current;
+                days = Math.floor(diff/1000/60/60/24);
+
+                
+              });
+              if((days !=0) && (days >= 2))
+                {
+                  ////shift data
+                  database.ref('beckbag').child('ongoingflights').child(flightnumber)
+                  .set({
+                  snapshot
+                  });
+
+
+                  ////adding initial tracking data
+
+                  database.ref('beckbag').child('ongoingflights').child(flightnumber).child('tracking').child('stageone').child('Waiting')
+                  .update({
+                  timestamp: new Date().getTime()
+                  });
+
+                  ////delete flight from 'ongoingflights'
+
+                }
+            });
+          }); 
+
+
+  };
+
+  onDateChange(dates, dateStrings) {
+  var fromdate = dateStrings[0];
+  fromdate = fromdate.split("-");
+  var fromtimestamp = new Date(fromdate).getTime();
+  var todate = dateStrings[1];
+  todate = todate.split("-");
+  var totimestamp = new Date(todate).getTime();
+
+  this.setState({
+      added: false
+    });
+    var list = [];
+    if( this.state.searching){
+      list = this.state.airlinelist;
+    }
+    else
+    {
+      list = this.state.notmodifiedlist;
+    }
+    var searchlist = [];
+    var length = list.length;
+    var searchlistcount = 0;
+    var i = 0;
+    for(i; i<length; i++)
+    { 
+      console.log(list[i])
+      var timestamp = list[i].timestamp;
+      var fromdiff = timestamp - fromtimestamp;
+      var todiff = totimestamp - timestamp;
+      if (( fromdiff >= 0 ) && ( todiff >= 0 ))
+      {
+        console.log('entered');
+        searchlist[searchlistcount] = list[i];
+        searchlistcount++;
+      }
+    }
+    if(i === length){
+      this.setState({
+      added: true,
+      airlinelist: searchlist,
+      datechange: true
+    });
+    }
+    
+  }  
+
   render() {
     return (
       <>
-        <div className="content">
+        <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '90px' }}>
           <Row>
-            <Col xs="12">
-              <Card className="card-chart">
+            <Col xs="12" style={{textAlign:'center', marginBottom: '50px'}}>
+              { !this.state.added && <Spin size="large" indicator={antIcon} />}
+              { this.state.added && <Card className="card-chart">
                 <CardHeader>
                   <Row>
                     <Col className="text-left" sm="6">
-                      <h5 className="card-category">Total Shipments</h5>
+                      <h5 className="card-category">Packages</h5>
                       <CardTitle tag="h2">Performance</CardTitle>
                     </Col>
-                    <Col sm="6">
+                    <Col sm="3">
                       <ButtonGroup
                         className="btn-group-toggle float-right"
                         data-toggle="buttons"
@@ -97,7 +508,7 @@ class Dashboard extends React.Component {
                             type="radio"
                           />
                           <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Accounts
+                            Weight
                           </span>
                           <span className="d-block d-sm-none">
                             <i className="tim-icons icon-single-02" />
@@ -119,7 +530,7 @@ class Dashboard extends React.Component {
                             type="radio"
                           />
                           <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Purchases
+                            Revenue
                           </span>
                           <span className="d-block d-sm-none">
                             <i className="tim-icons icon-gift-2" />
@@ -141,13 +552,16 @@ class Dashboard extends React.Component {
                             type="radio"
                           />
                           <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-                            Sessions
+                            Number
                           </span>
                           <span className="d-block d-sm-none">
                             <i className="tim-icons icon-tap-02" />
                           </span>
                         </Button>
                       </ButtonGroup>
+                    </Col>
+                    <Col sm="3">
+                      <RangePicker onChange={this.onDateChange} style={{ border: 'none', marginRight: 10, background: '#3358f4', backgroundImage: 'linear-gradient(to bottom left, #1d8cf8, #3358f4, #1d8cf8)' }} />
                     </Col>
                   </Row>
                 </CardHeader>
@@ -159,7 +573,7 @@ class Dashboard extends React.Component {
                     />
                   </div>
                 </CardBody>
-              </Card>
+              </Card>}
             </Col>
           </Row>
           <Row>

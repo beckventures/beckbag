@@ -238,7 +238,7 @@ class ListGroupCollapseUpcoming extends React.Component {
   render() {
     
     return (
-      <ListGroupItem style={{ background: 'red' }}>
+      <ListGroupItem style={{ background: '#1e1e2f' }}>
         <div className="react-notification-alert-container">
             <NotificationAlert ref="notificationAlert" />
         </div>
@@ -278,7 +278,7 @@ class ListGroupCollapseUpcoming extends React.Component {
                 <BusinessCenterIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
                 <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '600', color: 'white' }}>
                
-                Available {this.state.ball.weight} kgs
+                Monetized {this.state.ball.weight} kgs
               </p> 
               </Row>
             </Col>

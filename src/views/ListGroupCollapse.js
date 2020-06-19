@@ -262,7 +262,7 @@ class ListGroupCollapse extends React.Component {
   render() {
     
     return (
-      <ListGroupItem style={{ background: '#5e72e4' }}>
+      <ListGroupItem style={{ background: '#1e1e2f' }}>
         <div className="react-notification-alert-container">
             <NotificationAlert ref="notificationAlert" />
         </div>

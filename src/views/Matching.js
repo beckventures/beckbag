@@ -35,9 +35,11 @@ import {
   Row,
   Col,
   UncontrolledCollapse,
-  Toast, ToastBody, ToastHeader
+  Toast, ToastBody, ToastHeader,
+  TabContent, TabPane, Nav, NavItem, NavLink
 } from "reactstrap";
 import Button from '@material-ui/core/Button';
+import classnames from 'classnames';
 const database = firebaseinit.database();
 var packageslist = [];
 var packageidlist = [];
@@ -89,7 +91,7 @@ class Matching extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {airlinelist : [], added: false, totalweight: 0};
+    this.state = {airlinelist : [], added: false, totalweight: 0,activeTab: '1'};
   }
 
   componentDidMount() { 
@@ -202,6 +204,15 @@ class Matching extends React.Component {
 
   }
 
+  toggle = (tab) => {
+     if(this.state.activeTab !== tab) 
+     {
+      this.setState({
+        activeTab: tab
+      });
+     }
+  }
+
   
 
   componentDidUpdate(prevProps, prevState) {
@@ -214,15 +225,27 @@ class Matching extends React.Component {
     //const airlinelist = this.state.airlinelist;
     return (
       <>
-        <div className="content">
+        <div className="content" style={{ padding: '50px' }}>
           <Row>
             <Col>
-              <p style={{ fontWeight: '800', fontSize: '1.2em', padding: '24px 15px 0'}}>PENDING MATCHES</p>
+            <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
+                <CardHeader>
+                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', marginTop: '25px', textAlign: 'center' }}>Pending Matches</CardTitle>
+                  <p className="category" style={{ fontSize: '1em' }}></p>
+                </CardHeader>
+
+              <CardBody>
               <Container className="py-4">
               {this.state.airlinelist.map((airline) =>
               <ListGroupCollapse key={airline} cat={airline} ball={airline} />
               )}
               </Container>
+              </CardBody>
+              </Card>
+              <div>
+      
+    </div>
+              
             </Col>
           </Row>
         </div>

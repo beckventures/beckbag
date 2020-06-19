@@ -1,5 +1,7 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
+import Papa from "papaparse";
+import ReactFileReader from 'react-file-reader';
 import IconButton from '@material-ui/core/IconButton';
 import Skeleton from '@material-ui/lab/Skeleton';
 import MaterialTable from "material-table";
@@ -22,6 +24,8 @@ import EmailIcon from '@material-ui/icons/Email';
 import Search from '@material-ui/icons/Search';
 import SmsIcon from '@material-ui/icons/Sms';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import {
   Card,
   CardHeader,
@@ -31,7 +35,6 @@ import {
   Row,
   Col
 } from "reactstrap";
-import Button from '@material-ui/core/Button';
 const database = firebaseinit.database();
 
 const merchantorders = [];
@@ -83,8 +86,16 @@ class Interested extends React.Component {
             trip.booking_date = new Date(bookingtimestamp).toDateString();
             trip.traveldate = new Date(traveltimestamp).toDateString();
             var followuptimestamp = childSnapshot.val().followuptimestamp;
-            var followupdate= new Date(followuptimestamp).toDateString();
+            if( followuptimestamp === 'NA' )
+            {
+              var followupdate= 'NA';
+            }
+            else
+            {
+              var followupdate= new Date(followuptimestamp).toDateString();
+            }
             trip.followupdate = followupdate;
+            console.log(trip);
             merchantorders.push(trip);
             that.setState({
             merchantorderslist: merchantorders
@@ -101,17 +112,132 @@ class Interested extends React.Component {
     }
   }
 
+  handleFiles = files => {
+    var that = this;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        // Use reader.result
+        //alert(reader.result);
+        Papa.parse(e.target.result, {
+      header: true,
+      complete: function(results) {
+        var data = results.data;
+        var travel = 'Travel Timestamp';
+        //console.log(data[1].PNR);
+        for (var i=1;i<data.length;i++)
+        {
+          var pnr = data[i]['PNR'];
+          var traveltimestamp = parseInt(data[i]['Travel'], 10);
+          var d = new Date(traveltimestamp);
+          var monthtravel = d.getMonth()+1;
+          if (monthtravel === 1) monthtravel = 'January';
+          if (monthtravel === 2) monthtravel = 'February';
+          if (monthtravel === 3) monthtravel = 'March';
+          if (monthtravel === 4) monthtravel = 'April';
+          if (monthtravel === 5) monthtravel = 'May';
+          if (monthtravel === 6) monthtravel = 'June'; 
+          if (monthtravel === 7) monthtravel = 'July';
+          if (monthtravel === 8) monthtravel = 'August';
+          if (monthtravel === 9) monthtravel = 'September';
+          if (monthtravel === 10) monthtravel = 'October';
+          if (monthtravel === 11) monthtravel = 'November';
+          if (monthtravel === 12) monthtravel = 'December';
+          var traveldate = d.getDate() + ' ' + monthtravel + ' ' + d.getFullYear();
+          //console.log(traveldatetimestamp);
+          var bookingtimestamp = data[i]['Booking'];
+          var bd = new Date(bookingtimestamp);
+          var monthbooking = bd.getMonth()+1;
+          if (monthbooking === 1) monthbooking = 'January';
+          if (monthbooking === 2) monthbooking = 'February';
+          if (monthbooking === 3) monthbooking = 'March';
+          if (monthbooking === 4) monthbooking = 'April';
+          if (monthbooking === 5) monthbooking = 'May';
+          if (monthbooking === 6) monthbooking = 'June'; 
+          if (monthbooking === 7) monthbooking = 'July';
+          if (monthbooking === 8) monthbooking = 'August';
+          if (monthbooking === 9) monthbooking = 'September';
+          if (monthbooking === 10) monthbooking = 'October';
+          if (monthbooking === 11) monthbooking = 'November';
+          if (monthbooking === 12) monthbooking = 'December';
+          var bookingdate = d.getDate() + ' ' + monthtravel + ' ' + d.getFullYear();
+          var from = data[i]['From'];
+          var to = data[i]['To'];
+          var number = data[i]['Number'];
+          var classoption = data[i]['Class'];
+          var flightnumber = data[i]['Flight'];
+          var tripid = pnr;
+          var followups = 0;
+          var followuptimestamp = 'NA';
+          var followupdate = 'NA';
+          var sourceid = 'indigo';
+          database.ref('beckbag/carriertrips/interested/' + tripid).set({
+          flightnumber: flightnumber,
+          from: from,
+          to: to,
+          number: number,
+          traveldate: traveldate,
+          traveldatetimestamp: traveltimestamp,
+          class: classoption,
+          tripid: tripid,
+          pnr: pnr,
+          sourceid: sourceid,
+          followups: 0,
+          followuptimestamp: followuptimestamp,
+          bookingtimestamp: bookingtimestamp
+          });
+          var trip = {};
+          trip.booking_date = bookingdate;
+          trip.bookingtimestamp = bookingtimestamp;
+          trip.class = classoption;
+          trip.flightnumber = flightnumber;
+          trip.followupdate = followupdate;
+          trip.followups = followups;
+          trip.followuptimestamp = followuptimestamp
+          trip.from = from;
+          trip.to = to;
+          trip.number = number;
+          trip.pnr = pnr;
+          trip.sourceid = sourceid;
+          trip.traveldate = traveldate;
+          trip.traveldatetimestamp = traveltimestamp;
+          trip.tripid = tripid;
+          database.ref('beckbag/carrier/' + sourceid + '/interested/' + tripid).set({
+          tripid: tripid,
+          timestamp: new Date().getTime()
+          });
+          database.ref('beckbag/carrier/' + sourceid + '/notification/' + tripid).set({
+          tripid: tripid,
+          status: 'Interested Traveler',
+          timestamp: new Date().getTime()
+          });
+          merchantorders.push(trip);
+            that.setState({
+            merchantorderslist: merchantorders
+            });
+        }
+      }
+    });
+    }
+    reader.readAsText(files[0]);
+  }
+
   render() {
     const merchantorderslist = this.state.merchantorderslist.reverse();
     return (
       <>
-        <div className="content">
+        <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
           <Row>
             <Col md="12">
-              <Card>
+              <Card style={{ background: 'transparent' }}>
                 <CardHeader>
-                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800' }}>List Of Interested Travelers</CardTitle>
-                  <p className="category" style={{ fontSize: '1em' }}>All travelers who have shown interest</p>
+                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', textAlign: 'center' }}>List Of Interested Travelers</CardTitle>
+                  <p className="category" style={{ fontSize: '1em', textAlign: 'center' }}>All travelers who have shown interest</p>
+                  
+    <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
+    <Button style={{ position: 'absolute', top: '25px', right: '25px' }}>
+      <UploadOutlined /> Upload CSV
+    </Button>
+    </ReactFileReader>
                 </CardHeader>
                 <CardBody>
                   
@@ -268,15 +394,12 @@ class Interested extends React.Component {
             </Col>
           </Row>
           {!this.state.added && <Row style={{ paddingLeft: '15px', paddingRight: '15px' }}>
-<Col md="4">            
-<Skeleton variant="rect" height={40} style={{ borderRadius: '2px', background: '#f5f5f5' }}/>
+<Col md="12">            
+<Skeleton variant="rect" height={25} style={{ borderRadius: '2px', background: '#f5f5f5', marginLeft: '100px', marginRight: '100px', marginBottom: '12px' }}/>
+<Skeleton variant="rect" height={25} style={{ borderRadius: '2px', background: '#f5f5f5', marginLeft: '100px', marginRight: '100px', marginBottom: '12px' }}/>
+<Skeleton variant="rect" height={25} style={{ borderRadius: '2px', background: '#f5f5f5', marginLeft: '100px', marginRight: '100px', marginBottom: '12px' }}/>
 </Col>
-<Col md="4">            
-<Skeleton variant="rect" height={40} style={{ borderRadius: '2px', background: '#f5f5f5' }}/>
-</Col>
-<Col md="4">            
-<Skeleton variant="rect" height={40} style={{ borderRadius: '2px', background: '#f5f5f5' }}/>
-</Col>
+
 </Row>}
         </div>
       </>

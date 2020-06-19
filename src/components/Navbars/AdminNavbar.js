@@ -81,6 +81,7 @@ class AdminNavbar extends React.Component {
         <Navbar
           className={classNames("navbar-absolute", this.state.color)}
           expand="lg"
+          style={{ zIndex: 999 }}
         >
           <Container fluid>
             <div className="navbar-wrapper">

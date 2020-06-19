@@ -120,6 +120,7 @@ class Sidebar extends React.Component {
                     {prop.name === 'Interested Travelers' ? <i class="material-icons">emoji_objects</i> : null}
                     {prop.name === 'Notifications' ? <i class="material-icons">notification_important</i> : null}
                     {prop.name === 'Upcoming Flights' ? <i class="material-icons">alarm</i> : null}
+                    {prop.name === 'All Trips' ? <i class="fas fa-plane"></i> : null}
                     <p style={{ fontWeight: '800', fontSize: '1.1em' }}>{rtlActive ? prop.rtlName : prop.name}</p>
                   </NavLink>
                 </li>

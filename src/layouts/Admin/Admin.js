@@ -24,6 +24,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
+import SidebarBurger from "components/Sidebar/SidebarBurger.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
@@ -111,37 +112,29 @@ class Admin extends React.Component {
     return (
       <>
         <div className="wrapper">
-          <Sidebar
-            {...this.props}
-            routes={routes}
-            bgColor={this.state.backgroundColor}
-            logo={{
-              outterLink: "https://www.beckfriends.com/",
-              text: "BECKFriends.com",
-              imgSrc: logo
-            }}
-            toggleSidebar={this.toggleSidebar}
-          />
-          <div
-            className="main-panel"
-            ref="mainPanel"
-            data={this.state.backgroundColor}
-          >
-            <AdminNavbar
-              {...this.props}
-              brandText={this.getBrandText(this.props.location.pathname)}
-              toggleSidebar={this.toggleSidebar}
-              sidebarOpened={this.state.sidebarOpened}
-            />
-            <Switch>
-              {this.getRoutes(routes)}
-              <Redirect from="*" to="/admin/dashboard"/>
-            </Switch>
-            {// we don't want the Footer to be rendered on map page
-            this.props.location.pathname.indexOf("maps") !== -1 ? null : (
-              <Footer fluid />
-            )}
-          </div>
+          <SidebarBurger/>
+          <main id="page-wrap">
+            <div
+              className="main-panel"
+              ref="mainPanel"
+              data={this.state.backgroundColor}
+            >
+              <AdminNavbar
+                {...this.props}
+                brandText={this.getBrandText(this.props.location.pathname)}
+                toggleSidebar={this.toggleSidebar}
+                sidebarOpened={this.state.sidebarOpened}
+              />
+              <Switch>
+                {this.getRoutes(routes)}
+                <Redirect from="*" to="/admin/dashboard"/>
+              </Switch>
+              {// we don't want the Footer to be rendered on map page
+              this.props.location.pathname.indexOf("maps") !== -1 ? null : (
+                <Footer fluid />
+              )}
+            </div>
+          </main>  
         </div>
       </>
     );

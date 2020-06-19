@@ -1,7 +1,7 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
-import { Spin } from 'antd';
 import IconButton from '@material-ui/core/IconButton';
+import ListGroupCollapse from './ListGroupCollapse';
 import Skeleton from '@material-ui/lab/Skeleton';
 import MaterialTable from "material-table";
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
@@ -18,19 +18,36 @@ import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import EmailIcon from '@material-ui/icons/Email';
 import Search from '@material-ui/icons/Search';
+import SmsIcon from '@material-ui/icons/Sms';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import {
+  Container,
   Card,
   CardHeader,
   CardBody,
   CardTitle,
+  CardImg, CardText,
+  CardSubtitle,
   Table,
   Row,
-  Col
+  Col,
+  UncontrolledCollapse,
+  Toast, ToastBody, ToastHeader,
+  TabContent, TabPane, Nav, NavItem, NavLink
 } from "reactstrap";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import Button from '@material-ui/core/Button';
+import classnames from 'classnames';
+import TableList from './TableList';
+import Upcoming from './Upcoming';
+import Completed from './Completed';
 const database = firebaseinit.database();
+var packageslist = [];
+var packageidlist = [];
 
 const merchantorders = [];
 
@@ -53,12 +70,33 @@ const tableIcons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
+var matches = [];
+var actuallist = [];
+var airlinelist = [];
 
-class TableList extends React.Component {
+const things = {
+  idk: {
+    createdAt: new Date(),
+    title: 'Flight Number A010',
+    weight: 80
+  },
+  another: {
+    createdAt: new Date('2010-10-10'),
+    title: 'Flight Number A010',
+    weight: 100
+  },
+  more: {
+    createdAt: new Date('2011-11-11'),
+    title: 'Flight Number A010',
+    weight: 120
+  }
+}
+
+class Matching extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {merchantorderslist : [], added: false};
+    this.state = {merchantorderslist : [], airlinelist : [], added: false, totalweight: 0,activeTab: '1'};
   }
 
   componentDidMount() { 
@@ -92,6 +130,20 @@ class TableList extends React.Component {
     });
   }
 
+
+  
+
+  toggle = (tab) => {
+     if(this.state.activeTab !== tab) 
+     {
+      this.setState({
+        activeTab: tab
+      });
+     }
+  }
+
+  
+
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.added && this.state.added) {
     
@@ -99,98 +151,39 @@ class TableList extends React.Component {
   }
 
   render() {
+    //const airlinelist = this.state.airlinelist;
     const merchantorderslist = this.state.merchantorderslist.reverse();
     return (
       <>
-        <div className="content">
+        <div className="content" style={{ padding: '50px' }}>
           <Row>
-            <Col md="12">
-              <Card style={{ backgroundColor: 'transparent' }}>
-                <CardHeader>
-                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800' }}>List Of Confirmed Travelers</CardTitle>
-                  <p className="category" style={{ fontSize: '1em' }}>All travelers across various routes</p>
-                </CardHeader>
-                <CardBody>
-                  
-                  {this.state.added && <MaterialTable
-                    options={{
-      filtering: true,
-      actionsColumnIndex: -1,
-      exportButton: true,
-      rowStyle: {
-            backgroundColor: '#1e1e2f',
-            color: 'white',
-            fontWeight: '600'
-          },
-      headerStyle: {
-            fontWeight: '800',
-            textAlign: 'center'
-          },
-      cellStyle: {
-            fontWeight: '500',
-            textAlign: 'center'
-          }    
-    }}
-                  icons={tableIcons}
-          columns={[
-            { title: "PNR", field: "pnr" },
-            { title: "Airline", field: "flightnumber" },
-            { title: "From", field: "from" },
-            { title: "To", field: "to" },
-            { title: "Weight", field: "weight" },
-            { title: "Travel Date", field: "traveldate", sorting: false }
-          ]}
-          data={merchantorderslist}
-          detailPanel={[
-        {
-          tooltip: 'Show Details',
-          render: rowData => {
-            return (
-              <div
-                style={{
-                  fontSize: '1.2em',
-                  fontWeight: '800',
-                  textAlign: 'center',
-                  color: 'white',
-                  padding: '1em',
-                  backgroundColor: '#27293d',
-                }}
-              >
-              <Row>
-                <Col md="3">
-                Booking Date<br/>
-                <br/>{rowData.booking_date}<br/>
-                </Col>
-                <Col md="3">
-                Discount<br/>
-                <br/>{rowData.discount}<br/>
-                </Col>
-                <Col md="3">
-                Number of Passengers<br/>
-                <br/>{rowData.number}<br/>
-                </Col>
-                <Col md="3">
-                Class<br/>
-                <br/>{rowData.class}<br/>
-                </Col>
-               </Row> 
+            <Col>
+              <p style={{ fontWeight: '800', fontSize: '1.2em', padding: '24px 15px 0'}}></p>
+              <div style={{ textAlign: 'center' }}>
+                <Tabs>
+    <TabList style={{ borderWidth: '0px' }}>
+      <Tab style={{ paddingRight: '30px', paddingLeft: '30px', paddingTop: '15px', paddingBottom: '15px', fontSize: '1.2em', borderRadius: '50px' }}>PENDING</Tab>
+      <Tab style={{ paddingRight: '30px', paddingLeft: '30px', paddingTop: '15px', paddingBottom: '15px', fontSize: '1.2em', borderRadius: '50px' }}>UPCOMING</Tab>
+      <Tab style={{ paddingRight: '30px', paddingLeft: '30px', paddingTop: '15px', paddingBottom: '15px', fontSize: '1.2em', borderRadius: '50px' }}>COMPLETED</Tab>
+    </TabList>
+ 
+    <TabPanel style={{ textAlign: 'center' }}>
+      <TableList />
+    </TabPanel>
+    <TabPanel>
+      <Upcoming />
+    </TabPanel>
+    <TabPanel>
+      <Completed />
+    </TabPanel>
+  </Tabs>
               </div>
-            )
-          },
-        },
-      ]}
-          
-          title="Confirmed Travelers"
-        />}
-                </CardBody>
-              </Card>
             </Col>
           </Row>
-          {!this.state.added && <Spin size="large" />}
         </div>
       </>
     );
   }
 }
 
-export default TableList;
+export default Matching;
