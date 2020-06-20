@@ -8,6 +8,7 @@ import Upcoming from "views/Upcoming.js";
 import Trips from "views/Trips.js";
 import Ongoing from "views/Ongoing.js";
 import Completed from "views/Completed.js";
+import Messaging from "views/Messaging.js";
 
 var routes = [
   {
@@ -78,5 +79,13 @@ var routes = [
     component: UserProfile,
     layout: "/admin"
   },
+  {
+    path: "/messaging",
+    name: "Message",
+    rtlName: "ملف تعريفي للمستخدم",
+    icon: "tim-icons icon-single-02",
+    component: Messaging,
+    layout: "/admin"
+  }
 ];
 export default routes;

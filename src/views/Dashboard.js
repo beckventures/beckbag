@@ -162,51 +162,51 @@ class Dashboard extends React.Component {
           var timestamp = newsnapshot.child('data').child('stats').child('timestamp').val();  
 
           var month=new Date(timestamp).getMonth()+1;
-          if( month == 1)
+          if( month === 1)
           {
             JanTotal = JanTotal + weight;
           }
-          if( month == 2)
+          if( month === 2)
           {
             FebTotal = FebTotal + weight;
           }
-          if( month == 3)
+          if( month === 3)
           {
             MarchTotal = MarchTotal + weight;
           }
-          if( month == 4)
+          if( month === 4)
           {
             AprilTotal = AprilTotal + weight;
           }
-          if( month == 5)
+          if( month === 5)
           {
             MayTotal = MayTotal + weight;
           }
-          if( month == 6)
+          if( month === 6)
           {
             JuneTotal = JuneTotal + weight;
           }
-          if( month == 7)
+          if( month === 7)
           {
             JulyTotal = JulyTotal + weight;
           }
-          if( month == 8)
+          if( month === 8)
           {
             AugustTotal = AugustTotal + weight;
           }
-          if( month == 9)
+          if( month === 9)
           {
             SepTotal = SepTotal + weight;
           }
-          if( month == 10)
+          if( month === 10)
           {
             OctTotal = OctTotal + weight;
           }
-          if( month == 11)
+          if( month === 11)
           {
             NovTotal = NovTotal + weight;
           }
-          if( month == 12)
+          if( month === 12)
           {
             DecTotal = DecTotal + weight;
           }
@@ -304,7 +304,7 @@ class Dashboard extends React.Component {
       ],
       datasets: [
         {
-          label: "My First dataset",
+          label: "Revenue",
           fill: true,
           backgroundColor: gradientStroke,
           borderColor: "#1f8ef1",
@@ -349,7 +349,7 @@ class Dashboard extends React.Component {
       ],
       datasets: [
         {
-          label: "My First dataset",
+          label: "Number of Packages",
           fill: true,
           backgroundColor: gradientStroke,
           borderColor: "#1f8ef1",

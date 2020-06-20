@@ -33,7 +33,8 @@
     "react-scripts": "3.4.0",
     "react-tabs": "^3.1.1",
     "reactstrap": "8.4.1",
-    "sendbird": "^3.0.125"
+    "sendbird": "^3.0.125",
+    "sendbird-uikit": "^1.0.6"
   },
   "scripts": {
     "start": "node --max_old_space_size=4096 node_modules/.bin/react-scripts start",

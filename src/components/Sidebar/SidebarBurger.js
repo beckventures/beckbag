@@ -157,7 +157,14 @@ class SidebarBurger extends React.Component {
             <Menu.Item key="2">Team</Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup key="g2" title="My Team">
-            <Menu.Item key="3">Group</Menu.Item>
+            <Menu.Item key="3">
+            Team
+            <Link
+                    to='/admin/messaging'
+                    className="nav-link"
+                    activeClassName="active"
+                  />
+        </Menu.Item>
             <Menu.Item key="4">Personal</Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
