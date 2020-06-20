@@ -17,7 +17,8 @@
 */
 import React from "react";
 import * as SendBird from "sendbird";
-import Chat from './Chat/Index';
+import Chat from './Chat';
+import './App.css';
 // reactstrap components
 import {
   Button,

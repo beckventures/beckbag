@@ -11,7 +11,7 @@ import {
 } from 'sendbird-uikit';
 import 'sendbird-uikit/dist/index.css';
 
-export default function Chat({ userId, nickname, theme }) {
+export default function Chat({ userId, nickname, theme, appId }) {
   const history = useHistory();
   useEffect(() => {
     if (!userId || !nickname) {
@@ -23,7 +23,7 @@ export default function Chat({ userId, nickname, theme }) {
   return (
     <div style={{ height: '100vh' }}>
       <SendBirdProvider
-        appId={process.env.APP_ID}
+        appId={appId}
         theme={theme}
         userId={userId}
         nickname={nickname}
