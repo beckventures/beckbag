@@ -143,31 +143,14 @@ class SidebarBurger extends React.Component {
                     activeClassName="active"
                   />
         </Menu.Item>
-        <SubMenu
-          key="sub1"
-          title={
-            <span>
-              <i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>chat</i>
-              <span>Chats</span>
-            </span>
-          }
-        >
-          <Menu.ItemGroup key="g1" title="BECKFriends.com">
-            <Menu.Item key="1">Merchants</Menu.Item>
-            <Menu.Item key="2">Team</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup key="g2" title="My Team">
-            <Menu.Item key="3">
-            Team
+        <Menu.Item key="ekdum6" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>chat</i>}>
+            Messaging
             <Link
                     to='/admin/messaging'
                     className="nav-link"
                     activeClassName="active"
                   />
         </Menu.Item>
-            <Menu.Item key="4">Personal</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
         <SubMenu key="sub2" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>supervised_user_circle</i>} title="Roles">
           <Menu.Item key="10">Manage Roles</Menu.Item>
           <Menu.Item key="11">Invite</Menu.Item>
