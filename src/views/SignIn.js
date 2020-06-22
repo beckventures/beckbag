@@ -87,12 +87,7 @@ export default function SignInSide() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          <img src="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/rsz_logo.png?alt=media&token=c29ec5dc-13c7-4a3a-aefc-0130203e64ea" alt="Girl in a jacket" className={classes.avatar} style={{ width: '55%' }} />
           <form className={classes.form} noValidate onSubmit={handleClick}>
             <TextField
               variant="outlined"
@@ -130,9 +125,6 @@ export default function SignInSide() {
             >
               Sign In
             </Button>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
           </form>
         </div>
       </Grid>
