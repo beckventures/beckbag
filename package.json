@@ -2,7 +2,7 @@
   "name": "black-dashboard-react",
   "version": "1.1.0",
   "private": true,
-  "homepage": "http://beckventures.github.io/beckbag",
+  "homepage": "http://beckventures.github.io",
   "dependencies": {
     "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
@@ -28,6 +28,7 @@
     "react-date-range": "^1.0.3",
     "react-dom": "16.13.0",
     "react-file-reader": "^1.1.4",
+    "react-helmet": "^6.1.0",
     "react-notification-alert": "0.0.12",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.4.0",
