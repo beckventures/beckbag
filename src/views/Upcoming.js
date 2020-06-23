@@ -330,7 +330,7 @@ class Upcoming extends React.Component {
             <Col md="12">
             <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
                 <CardHeader style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', textAlign: 'center' }}>List Of Completed Flights</CardTitle>
+                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', textAlign: 'center' }}>List Of Upcoming Flights</CardTitle>
                   <p className="category" style={{ fontSize: '1em' }}></p>
                   <div>
                   <RangePicker onChange={this.onDateChange} style={{ marginRight: '20px' }} />

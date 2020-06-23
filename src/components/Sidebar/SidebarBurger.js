@@ -20,8 +20,8 @@ var styles = {
     position: 'fixed',
     width: '30px',
     height: '25px',
-    left: '36px',
-    top: '95px',
+    left: '15px',
+    top: '20px',
   },
   bmBurgerBars: {
     background: '#fff'

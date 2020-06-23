@@ -17,6 +17,7 @@
 */
 import React from "react";
 // nodejs library that concatenates classes
+import {Helmet} from "react-helmet";
 import firebaseinit from '../credentials';
 import { Spin, DatePicker } from 'antd';
 import classNames from "classnames";
@@ -476,6 +477,18 @@ class Dashboard extends React.Component {
     return (
       <>
         <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '90px' }}>
+        <Helmet title="Dashboard | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'Dashboard | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
           <Row>
             <Col xs="12" style={{textAlign:'center', marginBottom: '50px'}}>
               { !this.state.added && <Spin size="large" indicator={antIcon} />}
@@ -566,7 +579,7 @@ class Dashboard extends React.Component {
                   </Row>
                 </CardHeader>
                 <CardBody>
-                  <div className="chart-area">
+                  <div className="chart-area" style={{ height: '300px' }}>
                     <Line
                       data={chartExample1[this.state.bigChartData]}
                       options={chartExample1.options}
