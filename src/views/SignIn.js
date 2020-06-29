@@ -85,7 +85,7 @@ export default function SignInSide() {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={12} className={classes.image} >
-        <ReactPlayer url="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckbag.mp4?alt=media&token=d47f3b1a-4002-4fa3-b69e-34f49682e11b" playing loop muted width="100%" height="100%"/>
+        <ReactPlayer url="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckbaghq.mp4?alt=media&token=29f5b495-9252-4a7d-9cd5-0e3698ae8b58" playing loop muted width="100%" height="100%"/>
       </Grid>
       <Grid item xs={12} sm={8} md={4} component={Paper} elevation={0} square style={{ position: 'absolute', top: '32px', right: '0px', background: 'transparent' }}>
         <div className={classes.paper} style={{ background: 'white', padding: '30px', borderRadius: '12px', margin: '32px 8px' }}>
