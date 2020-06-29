@@ -21,6 +21,24 @@ var routes = [
     layout: "/admin"
   },
   {
+    path: "/pending",
+    name: "Pending Trips",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: TableList,
+    layout: "/admin"
+  },
+  {
+    path: "/upcoming",
+    name: "Upcoming Trips",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: Upcoming,
+    layout: "/admin"
+  },
+  {
     path: "/match",
     name: "Matchmaking",
     rtlName: "قائمة الجدول",

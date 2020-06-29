@@ -102,7 +102,7 @@ class TableList extends React.Component {
     const merchantorderslist = this.state.merchantorderslist.reverse();
     return (
       <>
-        <div className="content">
+        <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
           <Row>
             <Col md="12">
               <Card style={{ backgroundColor: 'transparent' }}>

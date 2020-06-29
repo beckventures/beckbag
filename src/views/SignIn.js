@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import ReactPlayer from 'react-player';
 
 function Copyright() {
   return (
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/sil.jpg?alt=media&token=89a7e118-7802-4fbb-8ea0-b3399ed55a7a)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -84,10 +84,12 @@ export default function SignInSide() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <img src="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/rsz_logo.png?alt=media&token=c29ec5dc-13c7-4a3a-aefc-0130203e64ea" alt="Girl in a jacket" className={classes.avatar} style={{ width: '55%' }} />
+      <Grid item xs={false} sm={4} md={12} className={classes.image} >
+        <ReactPlayer url="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckbag.mp4?alt=media&token=d47f3b1a-4002-4fa3-b69e-34f49682e11b" playing loop muted width="100%" height="100%"/>
+      </Grid>
+      <Grid item xs={12} sm={8} md={4} component={Paper} elevation={0} square style={{ position: 'absolute', top: '32px', right: '0px', background: 'transparent' }}>
+        <div className={classes.paper} style={{ background: 'white', padding: '30px', borderRadius: '12px', margin: '32px 8px' }}>
+          <img src="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/rsz_logo.png?alt=media&token=c29ec5dc-13c7-4a3a-aefc-0130203e64ea" alt="Girl in a jacket" className={classes.avatar} style={{ width: '65%' }} />
           <form className={classes.form} noValidate onSubmit={handleClick}>
             <TextField
               variant="outlined"

@@ -12541,4 +12541,7 @@ select.form-control option {
 .ant-pagination-item{
   color: 'black !important';
 }
+.ant-avatar > img{
+  height: auto;
+}
 /*# sourceMappingURL=black-dashboard-react.css.map */

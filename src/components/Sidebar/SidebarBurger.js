@@ -102,59 +102,128 @@ class SidebarBurger extends React.Component {
         onOpenChange={this.onOpenChange}
         mode="inline"
       > 
-        <Avatar src="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/image_placeholder.png?alt=media&token=31765493-0c6f-478c-bc75-0ced33491d3d" style={{ width: '100px', height: '100px', paddingBottom: '1em', marginLeft: '6em' }} />
-        <Menu.Item key="ekdum1" icon={<DashboardOutlined />} >
-            Dashboard
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '50px' }}>
+          <Avatar src="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/indigo.png?alt=media&token=996799ba-b19e-4041-8008-62c55e2ba146" style={{ width: '75px', height: '75px', marginRight: '20px', marginLeft: '3em' }} />
+          <div>
+            <p style={{ fontWeight: '500', marginTop: '25px' }}>View Settings</p>
+          </div>
+        </div>
+          <Menu.Item key="ekdum1">  
             <Link
                     to='/admin/dashboard'
                     className="nav-link"
                     activeClassName="active"
-                  ></Link>
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>apps</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Dashboard</p></Link>
         </Menu.Item>
-        <Menu.Item key="ekdum2" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>local_airport</i>}>
-            All Trips
-            <Link
-                    to='/admin/trips'
+        <SubMenu key="sub1" style={{ paddingLeft: '20px' }} icon={<i class="material-icons" style={{ marginRight: '12px', fontSize: '1.4em', color: 'white' }}>local_airport</i>} title="All Trips">
+            <Menu.Item key="5" style={{ paddingLeft: '88px' }}>
+             <Link
+                    to='/admin/pending'
                     className="nav-link"
                     activeClassName="active"
-                  />
-        </Menu.Item>
-        <Menu.Item key="ekdum3" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.6em' }}>merge_type</i>}>
-            Matchmaking
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>pending</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Pending</p></Link>
+            </Menu.Item>
+            <Menu.Item key="6" style={{ paddingLeft: '88px' }}>
+            <Link
+                    to='/admin/upcoming'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>schedule</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Upcoming</p></Link>
+            </Menu.Item>
+            <Menu.Item key="7" style={{ paddingLeft: '88px' }}>
             <Link
                     to='/admin/match'
                     className="nav-link"
                     activeClassName="active"
-                  />
-        </Menu.Item>
-        <Menu.Item key="ekdum4" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>flight_takeoff</i>}>
-            Ongoing Trips
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.7em', color: 'white' }}>merge_type</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Matchmaking</p></Link>
+            </Menu.Item>
+            <Menu.Item key="8" style={{ paddingLeft: '88px' }}>
             <Link
                     to='/admin/ongoing'
                     className="nav-link"
                     activeClassName="active"
-                  />
-        </Menu.Item>
-        <Menu.Item key="ekdum5" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>airplanemode_inactive</i>}>
-            Interested Travelers
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>gps_fixed</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Ongoing</p></Link>
+            </Menu.Item>
+            <Menu.Item key="9" style={{ paddingLeft: '88px' }}>
+            <Link
+                    to='/admin/completed'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>check_circle_outline</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Completed</p></Link>
+            </Menu.Item>
+          </SubMenu>
+          <SubMenu key="sub2" style={{ paddingLeft: '20px' }} icon={<i class="material-icons" style={{ marginRight: '12px', fontSize: '1.4em', color: 'white' }}>local_mall</i>} title="All Packages">
+            <Menu.Item key="5" style={{ paddingLeft: '88px' }}>
+             <Link
+                    to='/admin/pending'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>pending</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Pending</p></Link>
+            </Menu.Item>
+            <Menu.Item key="6" style={{ paddingLeft: '88px' }}>
+            <Link
+                    to='/admin/upcoming'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>schedule</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Upcoming</p></Link>
+            </Menu.Item>
+            <Menu.Item key="7" style={{ paddingLeft: '88px' }}>
+            <Link
+                    to='/admin/match'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.7em', color: 'white' }}>merge_type</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Matchmaking</p></Link>
+            </Menu.Item>
+            <Menu.Item key="8" style={{ paddingLeft: '88px' }}>
+            <Link
+                    to='/admin/ongoing'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>gps_fixed</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Ongoing</p></Link>
+            </Menu.Item>
+            <Menu.Item key="9" style={{ paddingLeft: '88px' }}>
+            <Link
+                    to='/admin/completed'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>check_circle_outline</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Completed</p></Link>
+            </Menu.Item>
+          </SubMenu>
+        <Menu.Item key="ekdum5">  
             <Link
                     to='/admin/interestedtravelers'
                     className="nav-link"
                     activeClassName="active"
-                  />
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>tour</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Interested Travelers</p></Link>
         </Menu.Item>
-        <Menu.Item key="ekdum6" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>chat</i>}>
-            Messaging
+        <Menu.Item key="ekdum6">  
             <Link
                     to='/admin/messaging'
                     className="nav-link"
                     activeClassName="active"
-                  />
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>chat</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Messaging</p></Link>
         </Menu.Item>
-        <SubMenu key="sub2" icon={<i class="material-icons" style={{ marginRight: '10px', fontSize: '1.4em' }}>supervised_user_circle</i>} title="Roles">
-          <Menu.Item key="10">Manage Roles</Menu.Item>
-          <Menu.Item key="11">Invite</Menu.Item>
-        </SubMenu>
+        <Menu.Item key="ekdum7">  
+            <Link
+                    to='/admin/messaging'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>supervised_user_circle</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Roles</p></Link>
+        </Menu.Item>
       </Menu>
       </BubbleMenu>
     );

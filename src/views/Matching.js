@@ -225,7 +225,7 @@ class Matching extends React.Component {
     //const airlinelist = this.state.airlinelist;
     return (
       <>
-        <div className="content" style={{ padding: '50px' }}>
+        <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
           <Row>
             <Col>
             <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>

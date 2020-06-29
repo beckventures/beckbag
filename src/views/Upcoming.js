@@ -325,7 +325,7 @@ class Upcoming extends React.Component {
     //const airlinelist = this.state.airlinelist;
     return (
       <>
-       <div className="content" style={{ marginRight: '-25px', marginLeft: '25px' }}>
+       <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
           <Row>
             <Col md="12">
             <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
