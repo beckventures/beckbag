@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b1377ff7a4bd03f030cd345d96c05993",
+    "revision": "6540ee9b478eafbebb920e19e05607cc",
     "url": "/beckbag/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/beckbag/static/css/2.35745f1d.chunk.css"
   },
   {
-    "revision": "03fa6ce7a558d3883cb0",
+    "revision": "52277ed5dbbeadd6cb21",
     "url": "/beckbag/static/css/main.6964cbaf.chunk.css"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/beckbag/static/js/2.5ab9a0e1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "03fa6ce7a558d3883cb0",
-    "url": "/beckbag/static/js/main.6d0fb476.chunk.js"
+    "revision": "52277ed5dbbeadd6cb21",
+    "url": "/beckbag/static/js/main.998a54ed.chunk.js"
   },
   {
     "revision": "dc192b57bfed2afd6be1ea5558f17255",
-    "url": "/beckbag/static/js/main.6d0fb476.chunk.js.LICENSE.txt"
+    "url": "/beckbag/static/js/main.998a54ed.chunk.js.LICENSE.txt"
   },
   {
     "revision": "c2aeb872de77c1c8e078",
