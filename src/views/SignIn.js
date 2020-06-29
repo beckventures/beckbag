@@ -19,7 +19,7 @@ import ReactPlayer from 'react-player';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      <Link color="inherit" href="https://www.beckfriends.com/">
+      <Link color="inherit" href="www.beckfriends.com/">
         BECKFriends.com
       </Link>
     </Typography>
