@@ -1,30 +1,29 @@
 {
   "files": {
-    "main.css": "/beckbag/static/css/main.123ab9e0.chunk.css",
-    "main.js": "/beckbag/static/js/main.beba251f.chunk.js",
-    "main.js.map": "/beckbag/static/js/main.beba251f.chunk.js.map",
+    "main.css": "/beckbag/static/css/main.6964cbaf.chunk.css",
+    "main.js": "/beckbag/static/js/main.6d0fb476.chunk.js",
+    "main.js.map": "/beckbag/static/js/main.6d0fb476.chunk.js.map",
     "runtime-main.js": "/beckbag/static/js/runtime-main.5419615e.js",
     "runtime-main.js.map": "/beckbag/static/js/runtime-main.5419615e.js.map",
-    "static/css/2.a983e1a5.chunk.css": "/beckbag/static/css/2.a983e1a5.chunk.css",
-    "static/js/2.b1d20208.chunk.js": "/beckbag/static/js/2.b1d20208.chunk.js",
-    "static/js/2.b1d20208.chunk.js.map": "/beckbag/static/js/2.b1d20208.chunk.js.map",
+    "static/css/2.35745f1d.chunk.css": "/beckbag/static/css/2.35745f1d.chunk.css",
+    "static/js/2.5ab9a0e1.chunk.js": "/beckbag/static/js/2.5ab9a0e1.chunk.js",
+    "static/js/2.5ab9a0e1.chunk.js.map": "/beckbag/static/js/2.5ab9a0e1.chunk.js.map",
     "index.html": "/beckbag/index.html",
-    "precache-manifest.cf2baf2b18cfc9b27b094114d03631cf.js": "/beckbag/precache-manifest.cf2baf2b18cfc9b27b094114d03631cf.js",
+    "precache-manifest.21d8e84fcbbb89890a85282e3623832f.js": "/beckbag/precache-manifest.21d8e84fcbbb89890a85282e3623832f.js",
     "service-worker.js": "/beckbag/service-worker.js",
-    "static/css/2.a983e1a5.chunk.css.map": "/beckbag/static/css/2.a983e1a5.chunk.css.map",
-    "static/css/main.123ab9e0.chunk.css.map": "/beckbag/static/css/main.123ab9e0.chunk.css.map",
-    "static/js/2.b1d20208.chunk.js.LICENSE.txt": "/beckbag/static/js/2.b1d20208.chunk.js.LICENSE.txt",
-    "static/js/main.beba251f.chunk.js.LICENSE.txt": "/beckbag/static/js/main.beba251f.chunk.js.LICENSE.txt",
+    "static/css/2.35745f1d.chunk.css.map": "/beckbag/static/css/2.35745f1d.chunk.css.map",
+    "static/css/main.6964cbaf.chunk.css.map": "/beckbag/static/css/main.6964cbaf.chunk.css.map",
+    "static/js/2.5ab9a0e1.chunk.js.LICENSE.txt": "/beckbag/static/js/2.5ab9a0e1.chunk.js.LICENSE.txt",
+    "static/js/main.6d0fb476.chunk.js.LICENSE.txt": "/beckbag/static/js/main.6d0fb476.chunk.js.LICENSE.txt",
     "static/media/anime3.png": "/beckbag/static/media/anime3.bd6820f1.png",
-    "static/media/emilyz.jpg": "/beckbag/static/media/emilyz.9fcf69e5.jpg",
     "static/media/nucleo-icons.css": "/beckbag/static/media/nucleo.f0b489a5.woff",
     "static/media/react-logo.png": "/beckbag/static/media/react-logo.eb6be414.png"
   },
   "entrypoints": [
     "static/js/runtime-main.5419615e.js",
-    "static/css/2.a983e1a5.chunk.css",
-    "static/js/2.b1d20208.chunk.js",
-    "static/css/main.123ab9e0.chunk.css",
-    "static/js/main.beba251f.chunk.js"
+    "static/css/2.35745f1d.chunk.css",
+    "static/js/2.5ab9a0e1.chunk.js",
+    "static/css/main.6964cbaf.chunk.css",
+    "static/js/main.6d0fb476.chunk.js"
   ]
 }
