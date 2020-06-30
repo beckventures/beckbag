@@ -26,6 +26,7 @@ import { ListGroupItem, Collapse, Row,
   Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, CardBody, CardText, CardFooter,
   Col, Media } from 'reactstrap';
 import FlightIcon from '@material-ui/icons/Flight';
+import { DeliveredProcedureOutlined, FundViewOutlined, AppleOutlined, AndroidOutlined } from '@ant-design/icons';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
@@ -250,7 +251,7 @@ class ListGroupCollapseUpcoming extends React.Component {
             <Col md="4">
               <Row>
                 <FlightIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white' }}>
                   <strong>{this.state.ball.flightnumber}</strong>
                 </p>
               </Row>
@@ -258,7 +259,7 @@ class ListGroupCollapseUpcoming extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <FlightTakeoffIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
                 <strong>{this.state.ball.from}</strong>
               </p>
               </Row>
@@ -266,7 +267,7 @@ class ListGroupCollapseUpcoming extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <EventNoteIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
                 <strong>{this.state.ball.travel_date}</strong>
               </p>
               </Row>
@@ -276,7 +277,7 @@ class ListGroupCollapseUpcoming extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <BusinessCenterIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '600', color: 'white' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '600', color: 'white' }}>
                
                 Monetized {this.state.ball.weight} kgs
               </p> 
@@ -285,16 +286,25 @@ class ListGroupCollapseUpcoming extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <FlightLandIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
                 <strong>{this.state.ball.to}</strong>
               </p>
+              </Row>
+            </Col>
+            <Col md="4">
+              <Row style={{ textAlign: 'center' }}>
+                <FundViewOutlined style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
+                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '600', color: 'white' }}>
+               
+                View Packages
+              </p> 
               </Row>
             </Col>
           </Row>  
           
            
         <Collapse isOpen={this.state.collapse}><br /><br />
-        <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', textAlign: 'center' }}>Recommended Packages</p><br />
+        <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', textAlign: 'center' }}>Confirmed Packages</p><br />
         <Modal isOpen={this.state.modal} toggle={this.toggleModal} backdrop="static" style={{ display: 'flex' }} >
         <ModalHeader toggle={this.toggleModal} style={{ textAlign: 'center' }} charCode="X"></ModalHeader>
         <ModalBody style={{ textAlign: 'center' }}>

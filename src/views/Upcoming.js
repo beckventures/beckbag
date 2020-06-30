@@ -1,5 +1,6 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
+import {Helmet} from "react-helmet";
 import { Spin, DatePicker, Input } from 'antd';
 import IconButton from '@material-ui/core/IconButton';
 import ListGroupCollapseUpcoming from './ListGroupCollapseUpcoming';
@@ -22,6 +23,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import EmailIcon from '@material-ui/icons/Email';
 import SmsIcon from '@material-ui/icons/Sms';
+import './Tabs.css';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import {
   Container,
@@ -325,12 +327,24 @@ class Upcoming extends React.Component {
     //const airlinelist = this.state.airlinelist;
     return (
       <>
-       <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
+       <div className="content"  style={{ padding: '25px', paddingLeft: '50px', paddingTop: '40px' }}>
+       <Helmet title="In Process | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'In Process | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
           <Row>
             <Col md="12">
-            <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
+            <Card className="customcard" style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
                 <CardHeader style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', textAlign: 'center' }}>List Of Upcoming Flights</CardTitle>
+                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', textAlign: 'center' }}>List Of In Process Flights</CardTitle>
                   <p className="category" style={{ fontSize: '1em' }}></p>
                   <div>
                   <RangePicker onChange={this.onDateChange} style={{ marginRight: '20px' }} />
@@ -345,8 +359,8 @@ class Upcoming extends React.Component {
     </div>
                 </CardHeader>
 
-              <CardBody>
-              {!this.state.added && <Spin size="large" />}
+              <CardBody style={{ textAlign: 'center' }}>
+              {!this.state.added && <Spin size="large" style={{ marginTop: '70px' }}/>}
               {this.state.added && <Container className="py-4" style={{ padding: '0' }}>
               {this.state.airlinelist.map((airline) =>
               <ListGroupCollapseUpcoming key={airline} cat={airline} ball={airline} />

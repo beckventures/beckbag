@@ -12544,4 +12544,8 @@ select.form-control option {
 .ant-avatar > img{
   height: auto;
 }
+.ant-tabs-nav-wrap{
+  display: flex;
+  justify-content: center;
+}
 /*# sourceMappingURL=black-dashboard-react.css.map */

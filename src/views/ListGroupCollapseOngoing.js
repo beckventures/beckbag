@@ -1,6 +1,7 @@
 import React , { forwardRef } from 'react';
 import firebaseinit from '../credentials';
 import { Steps, Divider, Select, List, Typography, Result } from 'antd';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import IconButton from '@material-ui/core/IconButton';
 import Skeleton from '@material-ui/lab/Skeleton';
 import MaterialTable from "material-table";
@@ -26,13 +27,15 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import { ListGroupItem, Collapse, Row,
   Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, CardBody, CardText, CardFooter,
   Col, Media } from 'reactstrap';
+import './Tabs.css';
 import FlightIcon from '@material-ui/icons/Flight';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
 import FlightLandIcon from '@material-ui/icons/FlightLand';
 import NotificationAlert from "react-notification-alert";
-import { DeliveredProcedureOutlined, FundViewOutlined } from '@ant-design/icons';
+import { DeliveredProcedureOutlined, FundViewOutlined, AppleOutlined, AndroidOutlined } from '@ant-design/icons';
+import 'react-tabs/style/react-tabs.css';
 
 const database = firebaseinit.database();
 var packageslist = [];
@@ -40,6 +43,8 @@ var packageidlist = [];
 
 const { Step } = Steps;
 const { Option } = Select;
+
+
 
 var ball = null;
 
@@ -860,13 +865,25 @@ class ListGroupCollapseOngoing extends React.Component {
     </Steps>}
     {(!this.state.hideTracking) && <div style={{  background: 'white', textAlign: 'center', color: 'black', fontWeight: '700', fontSize: '1.3em' }}>
     <div>
-    <Select defaultValue={inputtextl} name="statusselect"
+    <Tabs style={{ marginTop: '15px', marginBottom: '50px' }}>
+    <TabList style={{ borderWidth: '0px' }}>
+      <Tab style={{ paddingRight: '10px', paddingLeft: '10px', paddingTop: '10px', paddingBottom: '10px', fontSize: '0.8em', color: 'black', fontWeight: '500', marginTop: '3px' }}>Current</Tab>
+      <Tab style={{ paddingRight: '10px', paddingLeft: '10px', paddingTop: '10px', paddingBottom: '10px', fontSize: '0.8em', color: 'black', fontWeight: '500', marginTop: '3px' }}>Update</Tab>
+    </TabList>
+    
+    <TabPanel style={{ textAlign: 'center', marginTop: '20px' }}>
+      <p><span style={{ color: 'red', fontWeight: '600', marginTop: '10px', fontSize: '0.9em' }}>{inputtext}</span> </p>
+    </TabPanel>
+    <TabPanel>
+      <Select defaultValue={inputtextl} name="statusselect"
         key={`statusselect:${inputtextl}`} style={{ width: 'fit-content', marginTop: '20px' }} onChange={this.handleChange}>
       <Option value="In Progress">In Progress</Option>
       <Option value="Completed">Completed</Option>
       <Option value="error">Report Issue</Option>
     </Select>
     <Button color="primary" onClick={this.toggleModal} style={{ marginLeft: '15px' }} onClick={this.updateStatus}>Confirm</Button>
+    </TabPanel>
+  </Tabs>
     <Divider plain style={{ color: 'red', fontSize: '18px', marginTop: '25px' }}>
       Previous Updates
     </Divider>

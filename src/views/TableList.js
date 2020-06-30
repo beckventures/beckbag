@@ -1,5 +1,6 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
+import {Helmet} from "react-helmet";
 import { Spin } from 'antd';
 import IconButton from '@material-ui/core/IconButton';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -16,6 +17,7 @@ import Edit from '@material-ui/icons/Edit';
 import FilterList from '@material-ui/icons/FilterList';
 import FirstPage from '@material-ui/icons/FirstPage';
 import LastPage from '@material-ui/icons/LastPage';
+import './Tabs.css';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
@@ -102,10 +104,22 @@ class TableList extends React.Component {
     const merchantorderslist = this.state.merchantorderslist.reverse();
     return (
       <>
-        <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
+        <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '40px', textAlign: 'center' }}>
+        <Helmet title="Pending | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'Pending | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
           <Row>
             <Col md="12">
-              <Card style={{ backgroundColor: 'transparent' }}>
+              <Card className="customcard" style={{ backgroundColor: 'transparent' }}>
                 <CardHeader>
                   <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800' }}>List Of Confirmed Travelers</CardTitle>
                   <p className="category" style={{ fontSize: '1em' }}>All travelers across various routes</p>

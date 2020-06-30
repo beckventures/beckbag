@@ -1,0 +1,11 @@
+.react-tabs__tab--selected{
+ color : #001529 !important;
+ font-weight: 600 !important;
+ font-size: 1em !important;
+ border: 1px solid !important;
+ border-width: 0px !important;
+ border-bottom-width: 2px !important;
+}
+.customcard{
+ box-shadow: none !important;
+}

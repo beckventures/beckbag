@@ -1,6 +1,7 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
 import { Spin } from 'antd';
+import {Helmet} from "react-helmet";
 import IconButton from '@material-ui/core/IconButton';
 import ListGroupCollapseOngoing from './ListGroupCollapseOngoing';
 import MaterialTable from "material-table";
@@ -11,6 +12,7 @@ import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
+import './Tabs.css';
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import Edit from '@material-ui/icons/Edit';
 import FilterList from '@material-ui/icons/FilterList';
@@ -38,6 +40,7 @@ import {
   UncontrolledCollapse,
   Toast, ToastBody, ToastHeader
 } from "reactstrap";
+
 import Button from '@material-ui/core/Button';
 const database = firebaseinit.database();
 var feeslist = [];
@@ -353,17 +356,29 @@ class Ongoing extends React.Component {
     //const airlinelist = this.state.airlinelist;
     return (
       <>
-        <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
+        <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '40px' }}>
+          <Helmet title="Ongoing | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'Ongoing | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
           <Row>
             <Col md="12">
-            <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
+            <Card className="customcard" style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
                 <CardHeader>
                   <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', textAlign: 'center' }}>List Of Ongoing Flights</CardTitle>
                   <p className="category" style={{ fontSize: '1em' }}></p>
                 </CardHeader>
 
               <CardBody style={{ textAlign: 'center' }}>
-              {!this.state.added && <Spin size="large" />}
+              {!this.state.added && <Spin size="large" style={{ marginTop: '70px' }}/>}
               {this.state.added && <Container className="py-4">
               {this.state.airlinelist.map((airline) =>
               <ListGroupCollapseOngoing key={airline} cat={airline} ball={airline} />

@@ -1,5 +1,8 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
+import {Helmet} from "react-helmet";
+import { Spin, DatePicker, Input } from 'antd';
+import './Tabs.css';
 import IconButton from '@material-ui/core/IconButton';
 import ListGroupCollapse from './ListGroupCollapse';
 import Skeleton from '@material-ui/lab/Skeleton';
@@ -198,6 +201,7 @@ class Matching extends React.Component {
               });
             });
           that.setState({
+              added: true,
               airlinelist: actuallist
             })
           }); 
@@ -225,21 +229,34 @@ class Matching extends React.Component {
     //const airlinelist = this.state.airlinelist;
     return (
       <>
-        <div className="content" style={{ padding: '50px', paddingLeft: '86px', paddingTop: '70px' }}>
+        <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '40px' }}>
+          <Helmet title="Matching | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'Matching | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
           <Row>
             <Col>
-            <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
+            <Card className="customcard" style={{ backgroundColor: 'transparent', textAlign: 'center' }}>
                 <CardHeader>
-                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', marginTop: '25px', textAlign: 'center' }}>Pending Matches</CardTitle>
+                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', textAlign: 'center' }}>Pending Matches</CardTitle>
                   <p className="category" style={{ fontSize: '1em' }}></p>
                 </CardHeader>
 
               <CardBody>
-              <Container className="py-4">
+              {!this.state.added && <Spin size="large" style={{ marginTop: '70px' }}/>}
+              {this.state.added && <Container className="py-4">
               {this.state.airlinelist.map((airline) =>
               <ListGroupCollapse key={airline} cat={airline} ball={airline} />
               )}
-              </Container>
+              </Container>}
               </CardBody>
               </Card>
               <div>

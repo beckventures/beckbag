@@ -26,6 +26,7 @@ import { ListGroupItem, Collapse, Row,
   Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, CardBody, CardText, CardFooter,
   Col, Media } from 'reactstrap';
 import FlightIcon from '@material-ui/icons/Flight';
+import { DeliveredProcedureOutlined, FundViewOutlined, AppleOutlined, AndroidOutlined } from '@ant-design/icons';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff';
@@ -274,7 +275,7 @@ class ListGroupCollapse extends React.Component {
             <Col md="4">
               <Row>
                 <FlightIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white' }}>
                   <strong>{this.state.ball.flightnumber}</strong>
                 </p>
               </Row>
@@ -282,7 +283,7 @@ class ListGroupCollapse extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <FlightTakeoffIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
                 <strong>{this.state.ball.from}</strong>
               </p>
               </Row>
@@ -290,7 +291,7 @@ class ListGroupCollapse extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <EventNoteIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
                 <strong>{this.state.ball.travel_date}</strong>
               </p>
               </Row>
@@ -300,7 +301,7 @@ class ListGroupCollapse extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <BusinessCenterIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '600', color: 'white' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '600', color: 'white' }}>
                
                 Available {this.state.ball.weight} kgs
               </p> 
@@ -309,9 +310,18 @@ class ListGroupCollapse extends React.Component {
             <Col md="4">
               <Row style={{ textAlign: 'center' }}>
                 <FlightLandIcon fontSize="large" style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
-                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
+                <p style={{ fontSize: '1.1em', fontWeight: '800', color: 'white', float: 'right' }}>
                 <strong>{this.state.ball.to}</strong>
               </p>
+              </Row>
+            </Col>
+            <Col md="4">
+              <Row style={{ textAlign: 'center' }}>
+                <FundViewOutlined style={{ color: 'white', fontSize: 23, marginRight: 5, fontWeight: '800', marginTop: 3, marginLeft: 10 }}/>
+                <p onClick={this.toggle} style={{ fontSize: '1.1em', fontWeight: '600', color: 'white' }}>
+               
+                View Packages
+              </p> 
               </Row>
             </Col>
           </Row>  
@@ -345,7 +355,7 @@ class ListGroupCollapse extends React.Component {
                     <p style={{ fontSize: '1em', fontWeight: '600', color: 'white', textAlign: 'center' }}>Address - <span style={{ color: 'white', fontWeight: '700'}} >701, Malhotra Chambers, Deonar</span></p>
                     <p style={{ fontSize: '1em', fontWeight: '600', color: 'white', textAlign: 'center' }}>KYC - <span style={{ color: 'white', fontWeight: '700'}} >Verified</span>&nbsp;<CheckCircleOutlineIcon style={{ color: 'green' }}/></p>
                     <p style={{ fontSize: '1em', fontWeight: '600', color: 'white', textAlign: 'center' }}>Trust Rating - <span style={{ color: 'green', fontWeight: '700' }} >100%</span></p>
-                    <p style={{ fontSize: '1em', fontWeight: '600', color: 'white', textAlign: 'center' }}>Packages Sent - <span style={{ color: 'white', fontWeight: '700'}} >128</span></p><br />
+                    <p style={{ fontSize: '1em', fontWeight: '600', color: 'white', textAlign: 'center' }}>Packages Shipped - <span style={{ color: 'white', fontWeight: '700'}} >128</span></p><br />
                   </div>
                 </CardBody>
               </Card>

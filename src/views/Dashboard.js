@@ -476,7 +476,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <>
-        <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '60px' }}>
+        <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '50px' }}>
         <Helmet title="Dashboard | BeckBags"
           meta={[
             { name: 'description', content: 'Travel Meets Logistics' },

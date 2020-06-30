@@ -105,7 +105,7 @@ class SidebarBurger extends React.Component {
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '50px' }}>
           <Avatar src="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/indigo.png?alt=media&token=996799ba-b19e-4041-8008-62c55e2ba146" style={{ width: '75px', height: '75px', marginRight: '20px', marginLeft: '3em' }} />
           <div>
-            <p style={{ fontWeight: '500', marginTop: '25px' }}>View Settings</p>
+            <p style={{ fontWeight: '500' }}>View Settings</p>
           </div>
         </div>
           <Menu.Item key="ekdum1">  
@@ -125,14 +125,6 @@ class SidebarBurger extends React.Component {
                     style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
                   ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>pending</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Pending</p></Link>
             </Menu.Item>
-            <Menu.Item key="6" style={{ paddingLeft: '88px' }}>
-            <Link
-                    to='/admin/upcoming'
-                    className="nav-link"
-                    activeClassName="active"
-                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
-                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>schedule</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Upcoming</p></Link>
-            </Menu.Item>
             <Menu.Item key="7" style={{ paddingLeft: '88px' }}>
             <Link
                     to='/admin/match'
@@ -140,6 +132,14 @@ class SidebarBurger extends React.Component {
                     activeClassName="active"
                     style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
                   ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.7em', color: 'white' }}>merge_type</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Matchmaking</p></Link>
+            </Menu.Item>
+            <Menu.Item key="6" style={{ paddingLeft: '88px' }}>
+            <Link
+                    to='/admin/inprocess'
+                    className="nav-link"
+                    activeClassName="active"
+                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>schedule</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>In Process</p></Link>
             </Menu.Item>
             <Menu.Item key="8" style={{ paddingLeft: '88px' }}>
             <Link
@@ -159,41 +159,33 @@ class SidebarBurger extends React.Component {
             </Menu.Item>
           </SubMenu>
           <SubMenu key="sub2" style={{ paddingLeft: '20px' }} icon={<i class="material-icons" style={{ marginRight: '12px', fontSize: '1.4em', color: 'white' }}>local_mall</i>} title="All Packages">
-            <Menu.Item key="5" style={{ paddingLeft: '88px' }}>
+            <Menu.Item key="15" style={{ paddingLeft: '88px' }}>
              <Link
-                    to='/admin/pending'
+                    to='/admin/packages/pending'
                     className="nav-link"
                     activeClassName="active"
                     style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
                   ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>pending</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Pending</p></Link>
             </Menu.Item>
-            <Menu.Item key="6" style={{ paddingLeft: '88px' }}>
+            <Menu.Item key="16" style={{ paddingLeft: '88px' }}>
             <Link
-                    to='/admin/upcoming'
+                    to='/admin/packages/inprocess'
                     className="nav-link"
                     activeClassName="active"
                     style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
-                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>schedule</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Upcoming</p></Link>
+                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>schedule</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>In Process</p></Link>
             </Menu.Item>
-            <Menu.Item key="7" style={{ paddingLeft: '88px' }}>
+            <Menu.Item key="18" style={{ paddingLeft: '88px' }}>
             <Link
-                    to='/admin/match'
-                    className="nav-link"
-                    activeClassName="active"
-                    style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
-                  ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.7em', color: 'white' }}>merge_type</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Matchmaking</p></Link>
-            </Menu.Item>
-            <Menu.Item key="8" style={{ paddingLeft: '88px' }}>
-            <Link
-                    to='/admin/ongoing'
+                    to='/admin/packages/ongoing'
                     className="nav-link"
                     activeClassName="active"
                     style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}
                   ><i class="material-icons" style={{ marginRight: '12px', fontSize: '1.6em', color: 'white' }}>gps_fixed</i> <p style={{ color: 'white', fontWeight: '500', fontSize: '14px' }}>Ongoing</p></Link>
             </Menu.Item>
-            <Menu.Item key="9" style={{ paddingLeft: '88px' }}>
+            <Menu.Item key="19" style={{ paddingLeft: '88px' }}>
             <Link
-                    to='/admin/completed'
+                    to='/admin/packages/completed'
                     className="nav-link"
                     activeClassName="active"
                     style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}

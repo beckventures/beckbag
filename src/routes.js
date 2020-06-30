@@ -30,8 +30,26 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/upcoming",
-    name: "Upcoming Trips",
+    path: "/packages/pending",
+    name: "Pending Packages",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: TableList,
+    layout: "/admin"
+  },
+  {
+    path: "/inprocess",
+    name: "In Process",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: Upcoming,
+    layout: "/admin"
+  },
+  {
+    path: "/packages/inprocess",
+    name: "In Process Packages",
     collapse: true,
     rtlName: "لوحة القيادة",
     icon: "face",
@@ -65,8 +83,26 @@ var routes = [
     layout: "/admin"
   },
   {
+    path: "/packages/ongoing",
+    name: "Ongoing Packages",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: Ongoing,
+    layout: "/admin"
+  },
+  {
     path: "/completed",
     name: "Completed",
+    collapse: true,
+    rtlName: "لوحة القيادة",
+    icon: "face",
+    component: Completed,
+    layout: "/admin"
+  },
+  {
+    path: "/packages/completed",
+    name: "Completed Packages",
     collapse: true,
     rtlName: "لوحة القيادة",
     icon: "face",

@@ -17,6 +17,7 @@
 */
 import React from "react";
 import * as SendBird from "sendbird";
+import {Helmet} from "react-helmet";
 import Chat from './Chat';
 import './App.css';
 // reactstrap components
@@ -53,6 +54,18 @@ class Messaging extends React.Component {
     return (
       <>
         <div className="content" style={{ padding: '90px', paddingRight: '15px' }}>
+        <Helmet title="Messaging | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'Messaging | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
        <Chat
               appId='4C12F38A-9FB0-4F34-BB1D-773FB83699C8'
               userId="beckfriendsindigo"

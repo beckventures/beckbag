@@ -1,5 +1,6 @@
 import React , { forwardRef } from "react";
 import firebaseinit from '../credentials';
+import {Helmet} from "react-helmet";
 import { List, Steps, Divider, Select, Typography, Result, Input, Spin, DatePicker } from 'antd';
 import IconButton from '@material-ui/core/IconButton';
 import ListGroupCollapseCompleted from './ListGroupCollapseCompleted';
@@ -8,6 +9,7 @@ import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
+import './Tabs.css';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import Clear from '@material-ui/icons/Clear';
@@ -720,7 +722,19 @@ class Completed extends React.Component {
     const airlinelist = this.state.airlinelist;
     return (
       <>
-        <div className="content" style={{ marginRight: '-25px', marginLeft: '25px' }}>
+        <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '50px' }}>
+        <Helmet title="Completed | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'Completed | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
           <Row>
             <Col md="12">
             <Card style={{ backgroundColor: 'transparent', boxShadow: 'none !important' }}>
