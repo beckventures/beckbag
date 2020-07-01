@@ -1,6 +1,10 @@
 import Dashboard from "views/Dashboard.js";
 import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
+import PendingPackages from "views/PendingPackages.js";
+import ProcessPackages from "views/ProcessPackages.js";
+import OngoingPackages from "views/OngoingPackages.js";
+import CompletedPackages from "views/CompletedPackages.js";
 import Interested from "views/Interested.js";
 import UserProfile from "views/UserProfile.js";
 import Matching from "views/Matching.js";
@@ -35,7 +39,7 @@ var routes = [
     collapse: true,
     rtlName: "لوحة القيادة",
     icon: "face",
-    component: TableList,
+    component: PendingPackages,
     layout: "/admin"
   },
   {
@@ -53,7 +57,7 @@ var routes = [
     collapse: true,
     rtlName: "لوحة القيادة",
     icon: "face",
-    component: Upcoming,
+    component: ProcessPackages,
     layout: "/admin"
   },
   {
@@ -88,7 +92,7 @@ var routes = [
     collapse: true,
     rtlName: "لوحة القيادة",
     icon: "face",
-    component: Ongoing,
+    component: OngoingPackages,
     layout: "/admin"
   },
   {
@@ -106,7 +110,7 @@ var routes = [
     collapse: true,
     rtlName: "لوحة القيادة",
     icon: "face",
-    component: Completed,
+    component: CompletedPackages,
     layout: "/admin"
   },
   {

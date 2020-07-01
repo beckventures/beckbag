@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { useState } from 'react';
+import { Spin } from 'antd';
 import Avatar from '@material-ui/core/Avatar';
 import firebaseinit from '../credentials';
 import Button from '@material-ui/core/Button';
@@ -58,13 +60,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignInSide() {
-
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const classes = useStyles();
 
   const inputRef = useRef(null);
 
   function handleClick(event) {
+
+    setLoading(true);
     event.preventDefault();
     console.log();
     const email = event.target[0].value;
@@ -90,7 +94,8 @@ export default function SignInSide() {
       <Grid item xs={12} sm={8} md={4} component={Paper} elevation={0} square style={{ position: 'absolute', top: '32px', right: '0px', background: 'transparent' }}>
         <div className={classes.paper} style={{ background: 'white', padding: '30px', borderRadius: '12px', margin: '32px 8px' }}>
           <img src="https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/rsz_logo.png?alt=media&token=c29ec5dc-13c7-4a3a-aefc-0130203e64ea" alt="Girl in a jacket" className={classes.avatar} style={{ width: '65%' }} />
-          <form className={classes.form} noValidate onSubmit={handleClick}>
+          {loading && <Spin tip="Loading..." />}
+          {!loading && <form className={classes.form} noValidate onSubmit={handleClick}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -127,7 +132,7 @@ export default function SignInSide() {
             >
               Sign In
             </Button>
-          </form>
+          </form>}
         </div>
       </Grid>
     </Grid>
