@@ -7,7 +7,6 @@ import PendingPackages from "views/PendingPackages.js";
 import ProcessPackages from "views/ProcessPackages.js";
 import OngoingPackages from "views/OngoingPackages.js";
 import CompletedPackages from "views/CompletedPackages.js";
-import Interested from "views/Interested.js";
 import UserProfile from "views/UserProfile.js";
 import Matching from "views/Matching.js";
 import Upcoming from "views/Upcoming.js";
