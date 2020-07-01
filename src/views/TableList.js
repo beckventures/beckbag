@@ -105,11 +105,11 @@ class TableList extends React.Component {
     return (
       <>
         <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '40px', textAlign: 'center' }}>
-        <Helmet title="Pending | BeckBags"
+        <Helmet title="Pending Trips | BeckBags"
           meta={[
             { name: 'description', content: 'Travel Meets Logistics' },
             { property: 'og:description', content: 'Travel Meets Logistics' },
-            { property: 'og:title', content: 'Pending | BeckBags' },
+            { property: 'og:title', content: 'Pending Trips | BeckBags' },
             { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
             { property: 'og:type', content: 'website' },
             { property: 'og:site_name', content: 'BeckBags' },
@@ -121,8 +121,7 @@ class TableList extends React.Component {
             <Col md="12">
               <Card className="customcard" style={{ backgroundColor: 'transparent' }}>
                 <CardHeader>
-                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800' }}>List Of Confirmed Travelers</CardTitle>
-                  <p className="category" style={{ fontSize: '1em' }}>All travelers across various routes</p>
+                  <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', marginBottom: '25px' }}>Confirmed Travelers</CardTitle>
                 </CardHeader>
                 <CardBody>
                   

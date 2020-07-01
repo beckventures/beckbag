@@ -16,7 +16,8 @@
 
 */
 import React from "react";
-
+import {Helmet} from "react-helmet";
+import { Switch } from 'antd';
 // reactstrap components
 import {
   Button,
@@ -33,20 +34,38 @@ import {
 } from "reactstrap";
 
 class UserProfile extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(checked) {
+  console.log(`switch to ${checked}`);
+  }
+
   render() {
     return (
       <>
         <div className="content" style={{ padding: '25px', paddingLeft: '50px', paddingTop: '60px' }}>
+        <Helmet title="User Profile | BeckBags"
+          meta={[
+            { name: 'description', content: 'Travel Meets Logistics' },
+            { property: 'og:description', content: 'Travel Meets Logistics' },
+            { property: 'og:title', content: 'User Profile | BeckBags' },
+            { property: 'og:image', content: 'https://firebasestorage.googleapis.com/v0/b/beckfriends-2-a4131.appspot.com/o/beckicn.jpg?alt=media&token=f0384655-505a-4fdf-af5c-b01f5bb7198a' },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:site_name', content: 'BeckBags' },
+            { name: 'theme-color', content: '#ffffff' },
+            { name: 'apple-mobile-web-app-status-bar-style', content: '#ffffff' },
+            { name: 'msapplication-navbutton-color', content: '#ffffff' },
+          ]} />
           <Row>
             <Col md="4">
               <Card className="card-user">
                 <CardBody>
                   <CardText />
                   <div className="author">
-                    <div className="block block-one" />
-                    <div className="block block-two" />
-                    <div className="block block-three" />
-                    <div className="block block-four" />
                     <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
                         alt="..."
@@ -70,9 +89,9 @@ class UserProfile extends React.Component {
                     <Row>
                       <Col className="pr-md-1" md="5">
                         <FormGroup>
-                          <label>Company (disabled)</label>
+                          <label>Company</label>
                           <Input
-                            defaultValue="Creative Code Inc."
+                            defaultValue="Indigo"
                             disabled
                             placeholder="Company"
                             type="text"
@@ -81,9 +100,9 @@ class UserProfile extends React.Component {
                       </Col>
                       <Col className="px-md-1" md="3">
                         <FormGroup>
-                          <label>Username</label>
+                          <label>Name</label>
                           <Input
-                            defaultValue="michael23"
+                            defaultValue="Indigo Employee"
                             placeholder="Username"
                             type="text"
                           />
@@ -91,7 +110,7 @@ class UserProfile extends React.Component {
                       </Col>
                       <Col className="pl-md-1" md="4">
                         <FormGroup>
-                          <label htmlFor="exampleInputEmail1">
+                          <label htmlFor="mayukh@beckme.com">
                             Email address
                           </label>
                           <Input placeholder="mike@email.com" type="email" />
@@ -99,33 +118,11 @@ class UserProfile extends React.Component {
                       </Col>
                     </Row>
                     <Row>
-                      <Col className="pr-md-1" md="6">
+                      <Col md="4">
                         <FormGroup>
-                          <label>First Name</label>
+                          <label>Current Role</label>
                           <Input
-                            defaultValue="Mike"
-                            placeholder="Company"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-md-1" md="6">
-                        <FormGroup>
-                          <label>Last Name</label>
-                          <Input
-                            defaultValue="Andrew"
-                            placeholder="Last Name"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="12">
-                        <FormGroup>
-                          <label>Address</label>
-                          <Input
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                            defaultValue="Admin Privileges"
                             placeholder="Home Address"
                             type="text"
                           />
@@ -133,55 +130,15 @@ class UserProfile extends React.Component {
                       </Col>
                     </Row>
                     <Row>
-                      <Col className="pr-md-1" md="4">
+                      <Col md="4">
                         <FormGroup>
-                          <label>City</label>
-                          <Input
-                            defaultValue="Mike"
-                            placeholder="City"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="px-md-1" md="4">
-                        <FormGroup>
-                          <label>Country</label>
-                          <Input
-                            defaultValue="Andrew"
-                            placeholder="Country"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-md-1" md="4">
-                        <FormGroup>
-                          <label>Postal Code</label>
-                          <Input placeholder="ZIP Code" type="number" />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="8">
-                        <FormGroup>
-                          <label>About Me</label>
-                          <Input
-                            cols="80"
-                            defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
-                            placeholder="Here can be your description"
-                            rows="4"
-                            type="textarea"
-                          />
+                          <label style={{ marginRight: '25px' }}>Enable Push Notifications</label>
+                          <Switch defaultChecked onChange={this.onChange} />
                         </FormGroup>
                       </Col>
                     </Row>
                   </Form>
                 </CardBody>
-                <CardFooter>
-                  <Button className="btn-fill" color="primary" type="submit">
-                    Save
-                  </Button>
-                </CardFooter>
               </Card>
             </Col>
           </Row>

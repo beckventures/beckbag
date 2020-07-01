@@ -1,6 +1,8 @@
 import Dashboard from "views/Dashboard.js";
 import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
+import Confirmed from "views/Confirmed.js";
+import InterestedNew from "views/InterestedNew.js";
 import PendingPackages from "views/PendingPackages.js";
 import ProcessPackages from "views/ProcessPackages.js";
 import OngoingPackages from "views/OngoingPackages.js";
@@ -30,7 +32,7 @@ var routes = [
     collapse: true,
     rtlName: "لوحة القيادة",
     icon: "face",
-    component: TableList,
+    component: Confirmed,
     layout: "/admin"
   },
   {
@@ -126,7 +128,7 @@ var routes = [
     name: "Interested Travelers",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-puzzle-10",
-    component: Interested,
+    component: InterestedNew,
     layout: "/admin"
   },
   {
