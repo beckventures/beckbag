@@ -337,10 +337,6 @@ class ListGroupCollapse extends React.Component {
                 <CardBody>
                   <CardText />
                   <div className="author">
-                    <div className="block block-one" />
-                    <div className="block block-two" />
-                    <div className="block block-three" />
-                    <div className="block block-four" />
                     <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
                         alt="..."

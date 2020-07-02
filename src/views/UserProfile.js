@@ -113,7 +113,7 @@ class UserProfile extends React.Component {
                           <label htmlFor="mayukh@beckme.com">
                             Email address
                           </label>
-                          <Input placeholder="mike@email.com" type="email" />
+                          <Input placeholder="mayukh@beckme.com" type="email" />
                         </FormGroup>
                       </Col>
                     </Row>

@@ -210,7 +210,7 @@ class SidebarBurger extends React.Component {
         </Menu.Item>
         <Menu.Item key="ekdum7">  
             <Link
-                    to='/admin/messaging'
+                    to='/admin/roles'
                     className="nav-link"
                     activeClassName="active"
                     style={{ display: 'flex', padding: '0px 20px', alignItems: 'center' }}

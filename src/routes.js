@@ -2,6 +2,7 @@ import Dashboard from "views/Dashboard.js";
 import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
 import Confirmed from "views/Confirmed.js";
+import Roles from "views/Roles.js";
 import InterestedNew from "views/InterestedNew.js";
 import PendingPackages from "views/PendingPackages.js";
 import ProcessPackages from "views/ProcessPackages.js";
@@ -10,7 +11,6 @@ import CompletedPackages from "views/CompletedPackages.js";
 import UserProfile from "views/UserProfile.js";
 import Matching from "views/Matching.js";
 import Upcoming from "views/Upcoming.js";
-import Trips from "views/Trips.js";
 import Ongoing from "views/Ongoing.js";
 import Completed from "views/Completed.js";
 import Messaging from "views/Messaging.js";
@@ -67,15 +67,6 @@ var routes = [
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-puzzle-10",
     component: Matching,
-    layout: "/admin"
-  },
-  {
-    path: "/trips",
-    name: "All Trips",
-    collapse: true,
-    rtlName: "لوحة القيادة",
-    icon: "face",
-    component: Trips,
     layout: "/admin"
   },
   {
@@ -136,6 +127,14 @@ var routes = [
     rtlName: "ملف تعريفي للمستخدم",
     icon: "tim-icons icon-single-02",
     component: UserProfile,
+    layout: "/admin"
+  },
+  {
+    path: "/roles",
+    name: "User Profile",
+    rtlName: "ملف تعريفي للمستخدم",
+    icon: "tim-icons icon-single-02",
+    component: Roles,
     layout: "/admin"
   },
   {
