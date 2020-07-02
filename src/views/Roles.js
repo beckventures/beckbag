@@ -313,7 +313,7 @@ toggle () {
                 <CardHeader>
                   <CardTitle tag="h4" style={{ fontSize: '1.5em', fontWeight: '800', marginBottom: '25px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <h3>Team Member's Roles</h3>
+                    <h3>Set Team Member's Roles</h3>
                     <Button onClick={this.toggleModal} type="primary" shape="circle" icon={<PlusOutlined />} />
                   </div>
                   </CardTitle>
